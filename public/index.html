@@ -109,11 +109,12 @@
     }
 
     .logo-subtitle {
-      font-size: 21px;
+      font-size: 17px;
       color: rgba(255,255,255,0.3);
       font-family: 'JetBrains Mono', monospace;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.02em;
       margin-top: 2px;
+      line-height: 1.3;
     }
 
     /* Toggle Switch */
@@ -628,7 +629,7 @@
           <span class="logo-icon" id="logoIcon">◈</span>
           <span class="logo-text">SONDE</span>
         </div>
-        <div class="logo-subtitle">SPATIAL INTELLIGENCE PROTOCOL</div>
+        <div class="logo-subtitle">Spatial Oracle Network for Decentralized Environments</div>
       </div>
       <div class="toggle" id="toggle">
         <div class="toggle-knob"></div>
@@ -653,7 +654,7 @@
           <div class="card-label">Total Earned</div>
           <div class="card-value">
             <span id="totalEarned">142.847</span>
-            <span class="token-label">SONDE</span>
+            <span class="token-label">sonde</span>
           </div>
           <div class="stats-row">
             <div class="stat">
@@ -678,7 +679,7 @@
           </div>
           <div class="status-text">
             <div class="status-title" id="statusTitle">Sensing Paused</div>
-            <div class="status-subtitle" id="statusSubtitle">Toggle to start earning SONDE</div>
+            <div class="status-subtitle" id="statusSubtitle">Toggle to start earning sonde</div>
           </div>
         </div>
 
@@ -906,7 +907,7 @@
         logoIcon.classList.remove('active');
         statusCard.classList.remove('active');
         statusTitle.textContent = 'Sensing Paused';
-        statusSubtitle.textContent = 'Toggle to start earning SONDE';
+        statusSubtitle.textContent = 'Toggle to start earning sonde';
         sensorsLabel.textContent = 'SENSORS IDLE';
 
         // Stop readings
