@@ -6,9 +6,9 @@
 [![Live Demo](https://img.shields.io/badge/🌐_Live-Demo-success?style=for-the-badge)](https://sonde-orcin.vercel.app/)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/Bradbuythedip/sonde)
 
-**Spatial Intelligence Network for Decentralized Environments**
+**Spatial Oracle Network for Decentralized Environments**
 
-*Turn your phone into passive income - Earn $5-25/month while you sleep* 📡💰
+*Turn your phone into passive income - Earn $5-25/month in sonde tokens while you sleep* 📡💰
 
 </div>
 
@@ -16,14 +16,14 @@
 
 ## 🎯 What is SONDE?
 
-**SONDE** is a mobile-first Progressive Web App (PWA) that transforms your smartphone into a passive income generator. By sharing anonymized sensor data from your device, you earn cryptocurrency while maintaining complete privacy.
+**SONDE** (Spatial Oracle Network for Decentralized Environments) is a mobile-first Progressive Web App (PWA) that transforms your smartphone into a passive income generator. By sharing anonymized sensor data from your device, you earn **sonde** cryptocurrency tokens while maintaining complete privacy.
 
 ### The Value Proposition
 
 - 📱 **Install Once** → Runs automatically in background
 - 💤 **Zero Effort** → Truly passive earning while you sleep
 - 💸 **Zero Cost** → No hardware to buy, uses existing phone
-- 💰 **Earn $5-25/month** → Paid in SONDE tokens monthly
+- 💰 **Earn $5-25/month** → Paid in sonde tokens monthly
 - 🔒 **Privacy First** → No PII, location fuzzing, GDPR compliant
 - ⚡ **Minimal Impact** → <2% battery drain, ~10MB/day data
 
@@ -333,7 +333,7 @@ You earn based on:
 
 ### 5. **Monthly Payout**
 
-Receive SONDE tokens:
+Receive sonde tokens:
 - Paid to your Seed Vault
 - Minimum: $10 accumulated
 - Automatic monthly transfers
