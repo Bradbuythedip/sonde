@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About SONDE - Building Decentralized Infrastructure</title>
+    <meta name="description" content="Learn about SONDE's mission to build the world's largest decentralized sensor network on Solana">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #00F0FF;
+            --primary-dark: #00D4E0;
+            --background: #08090E;
+            --surface: #12141A;
+            --surface-light: #1A1D26;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B8BFCC;
+            --text-muted: #6B7280;
+            --accent-purple: #9945FF;
+            --accent-green: #14F195;
+            --border: #2A2D38;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        /* Navigation - Same as index */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(8, 9, 14, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent-purple) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 15px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 15px;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: var(--background);
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 240, 255, 0.3);
+        }
+        
+        /* Hero */
+        .about-hero {
+            padding: 140px 2rem 80px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .about-hero h1 {
+            font-size: 64px;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .about-hero p {
+            font-size: 22px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        /* Content Sections */
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 2rem;
+        }
+        
+        .content-section h2 {
+            font-size: 42px;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .content-section h3 {
+            font-size: 28px;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .content-section p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .content-section ul {
+            list-style: none;
+            margin: 2rem 0;
+        }
+        
+        .content-section ul li {
+            font-size: 18px;
+            color: var(--text-secondary);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: var(--surface);
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+        }
+        
+        .content-section ul li strong {
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Team Section */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .value-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.3s;
+        }
+        
+        .value-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+        }
+        
+        .value-icon {
+            font-size: 48px;
+            margin-bottom: 1rem;
+        }
+        
+        .value-card h4 {
+            font-size: 22px;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .value-card p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        
+        /* Roadmap */
+        .roadmap {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 3rem;
+            margin: 3rem 0;
+        }
+        
+        .roadmap-item {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .roadmap-item:last-child {
+            border-bottom: none;
+        }
+        
+        .roadmap-quarter {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .roadmap-item h4 {
+            font-size: 24px;
+            margin-bottom: 1rem;
+        }
+        
+        .roadmap-item p {
+            font-size: 16px;
+            margin-bottom: 0;
+        }
+        
+        /* Quote */
+        .quote {
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.1) 0%, rgba(153, 69, 255, 0.1) 100%);
+            border-left: 4px solid var(--primary);
+            border-radius: 12px;
+            padding: 3rem;
+            margin: 4rem 0;
+            font-size: 24px;
+            font-style: italic;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            padding: 80px 2rem;
+            background: var(--surface);
+            border-radius: 24px;
+            margin: 4rem 0;
+        }
+        
+        .cta-section h2 {
+            font-size: 42px;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Footer - Same as index */
+        footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 4rem 2rem 2rem;
+            margin-top: 100px;
+        }
+        
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--surface-light);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .about-hero h1 {
+                font-size: 42px;
+            }
+            
+            .about-hero p {
+                font-size: 18px;
+            }
+            
+            .content-section h2 {
+                font-size: 32px;
+            }
+            
+            .content-section h3 {
+                font-size: 24px;
+            }
+            
+            .quote {
+                font-size: 18px;
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/landing.html" class="logo">
+                <div class="logo-icon">📡</div>
+                <span>SONDE</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/landing.html#mission">Mission</a></li>
+                <li><a href="/landing.html#strategy">Strategy</a></li>
+                <li><a href="/landing.html#tokenomics">Tokenomics</a></li>
+                <li><a href="/landing.html#technology">Technology</a></li>
+                <li><a href="/about.html">About</a></li>
+            </ul>
+            <a href="/index.html" class="btn btn-primary">Launch App</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="about-hero">
+        <h1>About SONDE</h1>
+        <p>
+            We're building the world's largest decentralized physical infrastructure network (DePIN) by transforming smartphones into a global sensor network on Solana.
+        </p>
+    </section>
+
+    <!-- Main Content -->
+    <article class="content-section">
+        <h2>Our Vision</h2>
+        <p>
+            The physical world generates trillions of data points every second—cell signals, WiFi networks, atmospheric pressure, motion patterns, and more. Yet this valuable real-world data remains largely uncaptured, siloed in corporate databases, or inaccessible to those who need it most.
+        </p>
+        <p>
+            SONDE envisions a world where anyone with a smartphone can contribute to a global, decentralized sensor network while earning sustainable passive income. Where researchers, urban planners, telecom operators, and businesses have access to unprecedented real-world data. And where privacy is protected through cryptographic guarantees, not corporate promises.
+        </p>
+
+        <div class="quote">
+            "We're not just building an app. We're creating critical infrastructure for the decentralized future."
+        </div>
+
+        <h2>The Problem We're Solving</h2>
+        
+        <h3>📊 Data Inequality</h3>
+        <p>
+            Major corporations collect enormous amounts of sensor data from users but provide no compensation. Google Maps tracks billions of location points. Network operators know exactly where coverage is poor. But users see none of the value they create.
+        </p>
+
+        <h3>🔒 Privacy Violations</h3>
+        <p>
+            Current data collection methods require surrendering personal privacy. Apps track your exact location, browsing habits, and personal information—all to monetize your data without your meaningful consent or compensation.
+        </p>
+
+        <h3>💰 Missed Economic Opportunity</h3>
+        <p>
+            The location data market alone is worth $15+ billion annually. Telecom analytics: $50+ billion. Yet individual contributors—the people actually generating this data—receive nothing.
+        </p>
+
+        <h3>🌐 Limited Coverage</h3>
+        <p>
+            Enterprise sensor networks are expensive and have limited geographic coverage. Companies pay millions for data that could be crowdsourced more efficiently and comprehensively.
+        </p>
+
+        <h2>Our Solution</h2>
+        <p>
+            SONDE creates a decentralized, privacy-preserving sensor network that rewards contributors fairly while providing enterprise-grade data to buyers.
+        </p>
+
+        <ul>
+            <li>
+                <strong>📱 Mobile-First DePIN</strong>
+                Progressive Web App that turns any smartphone into a sensor node. No special hardware required—works on existing devices.
+            </li>
+            <li>
+                <strong>🔐 Privacy by Design</strong>
+                GPS fuzzing (~100m), WiFi hashing, no PII collection. Users maintain full control over what data they share.
+            </li>
+            <li>
+                <strong>💎 Hardware Attestation</strong>
+                TEEPIN integration on Solana Seeker devices provides cryptographic proof of data authenticity—making it 3-10x more valuable.
+            </li>
+            <li>
+                <strong>⚡ Built on Solana</strong>
+                High-speed, low-cost blockchain enables real-time micropayments and data verification at scale.
+            </li>
+            <li>
+                <strong>💰 Fair Compensation</strong>
+                Contributors earn $5-25/month per device—real passive income, not pennies.
+            </li>
+            <li>
+                <strong>📊 Enterprise-Grade Data</strong>
+                7 sensor streams providing comprehensive environmental and network data for B2B customers.
+            </li>
+        </ul>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">150K+</div>
+                <div class="stat-label">Target Devices</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">$15B+</div>
+                <div class="stat-label">Market Size</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">7</div>
+                <div class="stat-label">Sensor Streams</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Privacy First</div>
+            </div>
+        </div>
+
+        <h2>Why Solana?</h2>
+        <p>
+            Solana is the only blockchain capable of supporting a real-time, global sensor network at scale:
+        </p>
+
+        <ul>
+            <li>
+                <strong>⚡ High Throughput</strong>
+                50,000+ transactions per second enables millions of sensor readings daily without congestion.
+            </li>
+            <li>
+                <strong>💸 Low Fees</strong>
+                Fraction-of-a-cent transaction costs make micropayments economically viable.
+            </li>
+            <li>
+                <strong>📱 Mobile-First Ecosystem</strong>
+                Solana Seeker and Seed Vault provide native mobile integration and hardware attestation.
+            </li>
+            <li>
+                <strong>🔐 TEEPIN Technology</strong>
+                Hardware-backed cryptographic attestation prevents data spoofing and ensures authenticity.
+            </li>
+            <li>
+                <strong>🌐 Global Network</strong>
+                Solana's worldwide validator network provides true decentralization and censorship resistance.
+            </li>
+        </ul>
+
+        <h2>Our Values</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">🔒</div>
+                <h4>Privacy First</h4>
+                <p>Cryptographic privacy guarantees, not corporate promises. Users control their data.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">⚖️</div>
+                <h4>Fair Compensation</h4>
+                <p>Contributors deserve fair rewards for their valuable data. No exploitation.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🌍</div>
+                <h4>Global Access</h4>
+                <p>Anyone with a smartphone can participate. No barriers to entry.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🔓</div>
+                <h4>Open Source</h4>
+                <p>Transparent, auditable code. Community-driven development.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🚀</div>
+                <h4>Innovation</h4>
+                <p>Pushing boundaries of DePIN technology and blockchain applications.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🌱</div>
+                <h4>Sustainability</h4>
+                <p>Economic models designed for long-term viability, not short-term hype.</p>
+            </div>
+        </div>
+
+        <h2>Market Opportunity</h2>
+        <p>
+            The market for real-world sensor data is massive and growing:
+        </p>
+
+        <ul>
+            <li>
+                <strong>📍 Location Data Market: $15B+</strong>
+                Retailers, urban planners, and advertisers pay premium prices for accurate location intelligence.
+            </li>
+            <li>
+                <strong>📡 Telecom Analytics: $50B+</strong>
+                Network operators need continuous coverage data to optimize infrastructure and plan expansions.
+            </li>
+            <li>
+                <strong>🌤️ Weather Services: $7B+</strong>
+                Hyperlocal atmospheric data from millions of devices provides unprecedented accuracy.
+            </li>
+            <li>
+                <strong>🚗 Traffic & Mobility: $40B+</strong>
+                Cities and logistics companies need real-time motion and traffic intelligence.
+            </li>
+            <li>
+                <strong>🏙️ Smart Cities: $820B+</strong>
+                Urban development requires comprehensive environmental monitoring and analytics.
+            </li>
+        </ul>
+
+        <p>
+            <strong>Proven Precedents:</strong> OpenSignal (crowdsourced mobile coverage) sold for $100M+. Companies like Grass Network have attracted 3M+ users to passive earning models. The DePIN sector has seen explosive growth with projects like Helium and Hivemapper demonstrating real demand.
+        </p>
+
+        <h2>Development Roadmap</h2>
+        <div class="roadmap">
+            <div class="roadmap-item">
+                <div class="roadmap-quarter">Q1-Q2 2026 • Foundation</div>
+                <h4>Mobile App & Core Infrastructure</h4>
+                <p>
+                    Launch production PWA with full sensor integration. Deploy smart contracts for token distribution and data verification. Onboard first 1,000 beta users and begin collecting real data.
+                </p>
+            </div>
+            
+            <div class="roadmap-item">
+                <div class="roadmap-quarter">Q3 2026 • Seeker Integration</div>
+                <h4>Hardware Attestation & Premium Data</h4>
+                <p>
+                    Full TEEPIN integration on Solana Seeker devices. Launch hardware-verified data marketplace. Deploy Trusted Web Activity for native app experience. Target 10,000 Seeker devices.
+                </p>
+            </div>
+            
+            <div class="roadmap-item">
+                <div class="roadmap-quarter">Q4 2026 • Data Marketplace</div>
+                <h4>Enterprise Sales & Revenue Generation</h4>
+                <p>
+                    Launch B2B data marketplace with API access. Onboard enterprise customers in telecom, urban planning, weather services. Implement tiered pricing model. Target $500K ARR.
+                </p>
+            </div>
+            
+            <div class="roadmap-item">
+                <div class="roadmap-quarter">2027 • Global Scale</div>
+                <h4>Network Effects & Market Leadership</h4>
+                <p>
+                    Expand to 150K+ active devices globally. Achieve market leadership in decentralized sensor networks. Launch advanced analytics and ML-powered insights. Target $5M+ ARR.
+                </p>
+            </div>
+        </div>
+
+        <h2>Competitive Advantages</h2>
+        <p>
+            SONDE has several unique advantages over competitors:
+        </p>
+
+        <ul>
+            <li>
+                <strong>🔐 TEEPIN Attestation</strong>
+                Only DePIN project with hardware-verified data from day one, making our data 3-10x more valuable.
+            </li>
+            <li>
+                <strong>📊 7 Data Streams</strong>
+                Most competitors focus on 1-2 sensors. We collect comprehensive environmental and network data.
+            </li>
+            <li>
+                <strong>📱 150K Seeker Devices</strong>
+                Built-in distribution channel with Solana Seeker pre-order community ready to adopt.
+            </li>
+            <li>
+                <strong>💰 Real Earnings</strong>
+                $5-25/month per device, not pennies. Sustainable economics that attract and retain users.
+            </li>
+            <li>
+                <strong>🚀 Mobile-First</strong>
+                PWA technology means zero friction—no app store approval, instant updates, cross-platform.
+            </li>
+            <li>
+                <strong>⚡ Solana Speed</strong>
+                Only blockchain fast enough for real-time sensor data at global scale.
+            </li>
+        </ul>
+
+        <h2>Join the Revolution</h2>
+        <p>
+            SONDE is more than a project—it's a movement to democratize data collection, reward contributors fairly, and build critical infrastructure for the decentralized future.
+        </p>
+        
+        <p>
+            Whether you're a developer, data scientist, enterprise customer, or just someone who wants to earn passive income—there's a place for you in the SONDE network.
+        </p>
+
+        <div class="cta-section">
+            <h2>Get Involved Today</h2>
+            <p>Help us build the future of decentralized physical infrastructure</p>
+            <div class="cta-buttons">
+                <a href="/index.html" class="btn btn-primary" target="_blank">Launch App</a>
+                <a href="https://github.com/Bradbuythedip/sonde" class="btn btn-primary" target="_blank" style="background: var(--accent-purple);">View on GitHub</a>
+                <a href="https://x.com/sondeonsol" class="btn btn-primary" target="_blank" style="background: var(--accent-green);">Follow on X</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="logo" style="justify-content: center; margin-bottom: 2rem;">
+                <div class="logo-icon">📡</div>
+                <span>SONDE</span>
+            </div>
+            
+            <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem;">
+                Spatial Oracle Network for Decentralized Environments<br>
+                Building the world's largest decentralized sensor network on Solana
+            </p>
+            
+            <div class="footer-social">
+                <a href="https://x.com/sondeonsol" class="social-link" target="_blank" title="X/Twitter">𝕏</a>
+                <a href="https://github.com/Bradbuythedip/sonde" class="social-link" target="_blank" title="GitHub">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                </a>
+                <a href="/index.html" class="social-link" target="_blank" title="Website">🌐</a>
+            </div>
+            
+            <div class="footer-links">
+                <a href="/landing.html">Home</a>
+                <a href="/about.html">About</a>
+                <a href="/website/index.html#mission">Mission</a>
+                <a href="/website/index.html#strategy">Strategy</a>
+                <a href="/website/index.html#tokenomics">Tokenomics</a>
+                <a href="https://github.com/Bradbuythedip/sonde">GitHub</a>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2026 SONDE Protocol. All rights reserved.</p>
+                <p style="margin-top: 0.5rem;">Built on Solana with ❤️</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
