@@ -292,13 +292,39 @@
         .mission-icon {
             width: 56px;
             height: 56px;
-            background: linear-gradient(135deg, rgba(0, 240, 255, 0.2) 0%, rgba(153, 69, 255, 0.2) 100%);
-            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.15) 0%, rgba(153, 69, 255, 0.15) 100%);
+            border: 2px solid rgba(0, 240, 255, 0.3);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
             margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .mission-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--primary);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        .mission-icon::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+            border-radius: 16px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+        }
+        
+        .mission-card:hover .mission-icon::before {
+            opacity: 0.2;
         }
         
         .mission-card h3 {
@@ -666,7 +692,12 @@
     <section class="hero">
         <div class="hero-content animate-in">
             <div class="hero-badge">
-                🚀 Building on Solana
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin-right: 6px;">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                    <path d="M2 17l10 5 10-5"/>
+                    <path d="M2 12l10 5 10-5"/>
+                </svg>
+                Building on Solana
             </div>
             <h1>Decentralizing Physical Infrastructure</h1>
             <p class="hero-subtitle">
@@ -710,7 +741,12 @@
 
         <div class="mission-grid">
             <div class="mission-card">
-                <div class="mission-icon">🌍</div>
+                <div class="mission-icon">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                </div>
                 <h3>Global Coverage</h3>
                 <p>
                     Leverage the ubiquity of smartphones to create unprecedented geographic coverage for environmental and network data collection. Our goal is to provide real-time sensor data from every corner of the globe.
@@ -718,7 +754,12 @@
             </div>
 
             <div class="mission-card">
-                <div class="mission-icon">🔒</div>
+                <div class="mission-icon">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                </div>
                 <h3>Privacy First</h3>
                 <p>
                     Implement cryptographic privacy guarantees through location fuzzing, data hashing, and hardware attestation. Users maintain complete control over their data while earning rewards.
@@ -726,7 +767,13 @@
             </div>
 
             <div class="mission-card">
-                <div class="mission-icon">💰</div>
+                <div class="mission-icon">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/>
+                        <path d="M12 18V6"/>
+                    </svg>
+                </div>
                 <h3>Fair Compensation</h3>
                 <p>
                     Reward contributors fairly for their valuable data. Our tokenomics ensure sustainable earnings of $5-25/month per device, creating genuine passive income opportunities.
@@ -734,7 +781,11 @@
             </div>
 
             <div class="mission-card">
-                <div class="mission-icon">⚡</div>
+                <div class="mission-icon">
+                    <svg viewBox="0 0 24 24">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                    </svg>
+                </div>
                 <h3>Solana Speed</h3>
                 <p>
                     Built on Solana for high-speed, low-cost transactions. Process millions of sensor readings per day with negligible fees, enabling real-time data markets.
@@ -742,7 +793,12 @@
             </div>
 
             <div class="mission-card">
-                <div class="mission-icon">🛡️</div>
+                <div class="mission-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                </div>
                 <h3>Hardware Verified</h3>
                 <p>
                     Utilize TEEPIN attestation on Solana Seeker devices to cryptographically verify data authenticity. This makes our data 3-10x more valuable than unverified sources.
@@ -750,7 +806,13 @@
             </div>
 
             <div class="mission-card">
-                <div class="mission-icon">🌱</div>
+                <div class="mission-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M8 12h8"/>
+                    </svg>
+                </div>
                 <h3>Sustainable Growth</h3>
                 <p>
                     Design economic mechanisms that ensure long-term sustainability. Balance token emissions with real demand from enterprise data buyers creating lasting value.
@@ -1008,37 +1070,60 @@
             <p style="color: var(--text-secondary); margin-bottom: 2rem;">Collecting comprehensive environmental and network data</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto;">
                 <div style="padding: 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
-                    <div style="font-size: 32px; margin-bottom: 0.5rem;">📶</div>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 0.5rem;">
+                        <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+                        <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+                        <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+                        <line x1="12" y1="20" x2="12.01" y2="20"/>
+                    </svg>
                     <strong>Cell Signal</strong>
                     <p style="font-size: 13px; color: var(--text-muted); margin-top: 0.25rem;">RSSI, RSRP, RSRQ</p>
                 </div>
                 <div style="padding: 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
-                    <div style="font-size: 32px; margin-bottom: 0.5rem;">📡</div>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 0.5rem;">
+                        <circle cx="12" cy="12" r="2"/>
+                        <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/>
+                    </svg>
                     <strong>WiFi Density</strong>
                     <p style="font-size: 13px; color: var(--text-muted); margin-top: 0.25rem;">Networks, strength</p>
                 </div>
                 <div style="padding: 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
-                    <div style="font-size: 32px; margin-bottom: 0.5rem;">🔵</div>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 0.5rem;">
+                        <path d="M6.5 6.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/>
+                        <path d="M17.5 6.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/>
+                        <path d="M6.5 17.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/>
+                        <path d="M17.5 17.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/>
+                        <path d="M6.5 6.5L17.5 17.5M6.5 17.5L17.5 6.5"/>
+                    </svg>
                     <strong>Bluetooth</strong>
                     <p style="font-size: 13px; color: var(--text-muted); margin-top: 0.25rem;">Device counts</p>
                 </div>
                 <div style="padding: 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
-                    <div style="font-size: 32px; margin-bottom: 0.5rem;">📍</div>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 0.5rem;">
+                        <circle cx="12" cy="10" r="3"/>
+                        <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z"/>
+                    </svg>
                     <strong>Fuzzy GPS</strong>
                     <p style="font-size: 13px; color: var(--text-muted); margin-top: 0.25rem;">~100m accuracy</p>
                 </div>
                 <div style="padding: 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
-                    <div style="font-size: 32px; margin-bottom: 0.5rem;">🏃</div>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 0.5rem;">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                    </svg>
                     <strong>Motion State</strong>
                     <p style="font-size: 13px; color: var(--text-muted); margin-top: 0.25rem;">Activity detection</p>
                 </div>
                 <div style="padding: 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
-                    <div style="font-size: 32px; margin-bottom: 0.5rem;">🌡️</div>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 0.5rem;">
+                        <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/>
+                    </svg>
                     <strong>Barometer</strong>
                     <p style="font-size: 13px; color: var(--text-muted); margin-top: 0.25rem;">Air pressure</p>
                 </div>
                 <div style="padding: 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
-                    <div style="font-size: 32px; margin-bottom: 0.5rem;">⚡</div>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 0.5rem;">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                    </svg>
                     <strong>Network Speed</strong>
                     <p style="font-size: 13px; color: var(--text-muted); margin-top: 0.25rem;">Latency, bandwidth</p>
                 </div>
