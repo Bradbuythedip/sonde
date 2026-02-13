@@ -1,0 +1,658 @@
+<!-- SONDE: HOW IT WORKS - AXIOMATIC EXPLANATION FOR LANDING PAGE -->
+<!-- Copy this section into index.html between the hero and existing "how-it-works" -->
+
+<style>
+  .axiom-section {
+    background: linear-gradient(180deg, #0a0a0a 0%, #000 100%);
+    padding: 6rem 0;
+  }
+  
+  .axiom-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .axiom-title {
+    font-size: 3rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #00F0FF, #A855F7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .axiom-subtitle {
+    text-align: center;
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 4rem;
+  }
+  
+  .axiom-box {
+    background: rgba(0, 240, 255, 0.03);
+    border: 2px solid rgba(0, 240, 255, 0.2);
+    border-radius: 1rem;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .axiom-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #00F0FF, #A855F7);
+  }
+  
+  .axiom-number {
+    display: inline-block;
+    background: linear-gradient(135deg, #00F0FF, #A855F7);
+    color: #000;
+    font-size: 1rem;
+    font-weight: 800;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .axiom-heading {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+  
+  .axiom-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1rem;
+  }
+  
+  .axiom-formula {
+    background: rgba(0, 0, 0, 0.5);
+    border-left: 4px solid #00F0FF;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+  }
+  
+  .axiom-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .axiom-list li {
+    padding: 1rem;
+    margin: 0.75rem 0;
+    background: rgba(168, 85, 247, 0.05);
+    border-left: 4px solid #A855F7;
+    border-radius: 0.5rem;
+    font-size: 1.05rem;
+  }
+  
+  .axiom-list li strong {
+    color: #00F0FF;
+  }
+  
+  .proof-box {
+    background: rgba(16, 185, 129, 0.05);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .proof-box strong {
+    color: #10B981;
+  }
+  
+  .therefore {
+    display: inline-block;
+    color: #00F0FF;
+    font-size: 1.5rem;
+    margin: 0 0.5rem;
+  }
+  
+  .flow-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 2rem 0;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 1rem;
+  }
+  
+  .flow-step {
+    flex: 1;
+    min-width: 150px;
+    text-align: center;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(168, 85, 247, 0.1));
+    border-radius: 0.75rem;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+  }
+  
+  .flow-arrow {
+    font-size: 2rem;
+    color: #00F0FF;
+  }
+  
+  .truth-statement {
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(168, 85, 247, 0.1));
+    border: 2px solid #00F0FF;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin: 2rem 0;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #fff;
+  }
+</style>
+
+<!-- AXIOMATIC EXPLANATION SECTION -->
+<section class="axiom-section" id="how-it-works-detailed">
+  <div class="axiom-container">
+    <h2 class="axiom-title">How SONDE Works</h2>
+    <p class="axiom-subtitle">Explained from first principles</p>
+
+    <!-- AXIOM 1: THE FUNDAMENTAL TRUTH -->
+    <div class="axiom-box">
+      <span class="axiom-number">AXIOM 1</span>
+      <h3 class="axiom-heading">🌍 Your Phone Is Already Collecting Data</h3>
+      
+      <p class="axiom-text">
+        <strong>Fundamental truth:</strong> Your Solana Seeker phone continuously scans its environment using built-in sensors—WiFi networks, Bluetooth devices, cellular towers, GPS location, barometric pressure, motion patterns, and network performance.
+      </p>
+      
+      <p class="axiom-text">
+        This is not new. Every smartphone does this 24/7 to provide basic functionality (connecting to WiFi, getting location, switching cell towers). The sensors are always on, whether you use SONDE or not.
+      </p>
+      
+      <div class="proof-box">
+        <strong>Proof:</strong> Open your phone's settings. You'll see WiFi networks detected, Bluetooth devices nearby, and location services running. These sensors never sleep—they're constantly gathering environmental data to make your phone work.
+      </div>
+    </div>
+
+    <!-- AXIOM 2: THE EXPLOITATION -->
+    <div class="axiom-box">
+      <span class="axiom-number">AXIOM 2</span>
+      <h3 class="axiom-heading">💰 Big Tech Monetizes This Data Without Paying You</h3>
+      
+      <p class="axiom-text">
+        <strong>Current reality:</strong> Google, Apple, and cellular carriers harvest this sensor data for free. They aggregate it, analyze it, and sell it to enterprises for billions of dollars annually.
+      </p>
+      
+      <ul class="axiom-list">
+        <li><strong>Location data</strong> sold to advertisers, retailers, and hedge funds</li>
+        <li><strong>WiFi/Cell mapping</strong> sold to telecom operators and governments</li>
+        <li><strong>Movement patterns</strong> sold to urban planners and transportation companies</li>
+        <li><strong>Environmental data</strong> (pressure, temperature) sold to weather services</li>
+      </ul>
+      
+      <div class="proof-box">
+        <strong>Market proof:</strong> The location intelligence market alone is worth $15.5B annually. OpenSignal (crowdsourced cell coverage data) sold for $100M+. Your data has real, quantifiable value—but you receive $0.
+      </div>
+    </div>
+
+    <!-- AXIOM 3: THE INSIGHT -->
+    <div class="axiom-box">
+      <span class="axiom-number">AXIOM 3</span>
+      <h3 class="axiom-heading">🔄 This Is Backwards—You Should Be Paid</h3>
+      
+      <p class="axiom-text">
+        <strong>Logical conclusion:</strong> If your phone generates data, and that data has market value, then <em>you</em> should receive the revenue, not corporations.
+      </p>
+      
+      <div class="axiom-formula">
+        Your Data + Market Demand = Economic Value
+        <br><br>
+        Economic Value Should Flow To → Data Generator (You)
+        <br><br>
+        <span class="therefore">∴</span> You deserve to be compensated
+      </div>
+      
+      <p class="axiom-text">
+        This isn't charity. This is fair market economics. You generate the asset (data), enterprises want to buy it, so you should receive payment. Simple.
+      </p>
+    </div>
+
+    <!-- AXIOM 4: THE SOLUTION -->
+    <div class="axiom-box">
+      <span class="axiom-number">AXIOM 4</span>
+      <h3 class="axiom-heading">⚡ SONDE Flips the Model—You Get Paid Directly</h3>
+      
+      <p class="axiom-text">
+        <strong>How SONDE works:</strong> We connect data generators (you) directly with data buyers (enterprises), cutting out the middlemen who currently capture 100% of the value.
+      </p>
+      
+      <div class="flow-diagram">
+        <div class="flow-step">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">📱</div>
+          <strong>Your Seeker Phone</strong><br>
+          <small>Collects sensor data</small>
+        </div>
+        
+        <div class="flow-arrow">→</div>
+        
+        <div class="flow-step">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔐</div>
+          <strong>TEEPIN Attests</strong><br>
+          <small>Proves data is real</small>
+        </div>
+        
+        <div class="flow-arrow">→</div>
+        
+        <div class="flow-step">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏢</div>
+          <strong>Enterprise Buys</strong><br>
+          <small>Pays for verified data</small>
+        </div>
+        
+        <div class="flow-arrow">→</div>
+        
+        <div class="flow-step">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">💰</div>
+          <strong>You Earn Tokens</strong><br>
+          <small>$5-25/month</small>
+        </div>
+      </div>
+      
+      <p class="axiom-text">
+        <strong>Revenue split:</strong> 70% of enterprise payments go directly to data contributors (you). 30% covers protocol operations. This is hardcoded into the smart contract—transparent and immutable.
+      </p>
+    </div>
+
+    <!-- AXIOM 5: THE DIFFERENTIATOR -->
+    <div class="axiom-box">
+      <span class="axiom-number">AXIOM 5</span>
+      <h3 class="axiom-heading">🔒 TEEPIN Makes Your Data Unfakeable (Worth 3-10x More)</h3>
+      
+      <p class="axiom-text">
+        <strong>The problem with crowdsourced data:</strong> Enterprises are skeptical. How do they know the data is real? Bots, GPS spoofers, and fake devices flood most networks, making the data worthless.
+      </p>
+      
+      <p class="axiom-text">
+        <strong>SONDE's solution:</strong> TEEPIN (Trusted Execution Environment Platform Infrastructure Network)—exclusive to Solana Seeker phones—cryptographically signs every sensor reading at the hardware level.
+      </p>
+      
+      <ul class="axiom-list">
+        <li><strong>Hardware attestation:</strong> Every data point is signed by your phone's secure enclave</li>
+        <li><strong>Impossible to spoof:</strong> Can't run on emulators, jailbroken devices, or bots</li>
+        <li><strong>Enterprise premium:</strong> Verified data commands 3-10x higher prices than unverified crowdsourced data</li>
+        <li><strong>Your benefit:</strong> Higher data value = higher earnings for you</li>
+      </ul>
+      
+      <div class="proof-box">
+        <strong>Economic proof:</strong> Enterprises pay $0.001 per unverified data point vs. $0.003-0.010 per TEEPIN-attested data point. This premium flows directly to you as higher monthly earnings ($5-25 vs. $0.50-2 on competing platforms).
+      </div>
+    </div>
+
+    <!-- AXIOM 6: THE MECHANISM -->
+    <div class="axiom-box">
+      <span class="axiom-number">AXIOM 6</span>
+      <h3 class="axiom-heading">📊 Your Earnings Are Proportional to Your Contribution</h3>
+      
+      <p class="axiom-text">
+        <strong>Merit-based distribution:</strong> SONDE doesn't pay everyone equally. You earn based on the quality and quantity of data you contribute.
+      </p>
+      
+      <div class="axiom-formula">
+        Your Monthly Reward = 
+        <br><br>
+        (Your Contribution Score / Total Network Score) × Available Rewards
+        <br><br>
+        <strong>Contribution Score Factors:</strong>
+        <br>
+        • Data points submitted (quantity)
+        <br>
+        • Quality score (accuracy, completeness)
+        <br>
+        • TEEPIN attestation (3x multiplier)
+        <br>
+        • Rare sensors (barometer = +10%)
+        <br>
+        • Strategic locations (rural areas = +20%)
+        <br>
+        • Uptime (consistent contribution = +20%)
+      </div>
+      
+      <p class="axiom-text">
+        <strong>Example:</strong> Alice contributes 0.5% of network's total data quality. She earns 0.5% of monthly rewards pool. If the pool is $500K, Alice earns $2,500 worth of tokens. Bob contributes 0.1%, earns $500.
+      </p>
+      
+      <div class="proof-box">
+        <strong>Fairness guarantee:</strong> The smart contract automatically calculates contributions and distributes rewards. No human intervention, no bias, no manipulation—pure mathematics.
+      </div>
+    </div>
+
+    <!-- AXIOM 7: THE PRIVACY -->
+    <div class="axiom-box">
+      <span class="axiom-number">AXIOM 7</span>
+      <h3 class="axiom-heading">🛡️ Privacy Is Protected by Design, Not by Policy</h3>
+      
+      <p class="axiom-text">
+        <strong>Privacy isn't optional:</strong> SONDE is designed from first principles to never collect personally identifiable information (PII).
+      </p>
+      
+      <ul class="axiom-list">
+        <li><strong>Location fuzzing:</strong> GPS coordinates rounded to ~100m radius (can't identify your home)</li>
+        <li><strong>SSID hashing:</strong> WiFi network names are one-way hashed (can't be reversed)</li>
+        <li><strong>No MAC addresses:</strong> Only device counts, never unique identifiers</li>
+        <li><strong>Aggregation only:</strong> Enterprises buy aggregated data, never individual readings</li>
+        <li><strong>No browsing history:</strong> We only collect sensor data, not what you do on your phone</li>
+        <li><strong>GDPR compliant:</strong> Right to deletion, data portability, explicit consent</li>
+      </ul>
+      
+      <div class="proof-box">
+        <strong>Technical guarantee:</strong> The mobile app doesn't <em>have access</em> to PII. We can't collect your name, contacts, messages, or browsing history even if we wanted to—Android permissions don't allow it. Privacy by technical limitation, not by trust.
+      </div>
+    </div>
+
+    <!-- AXIOM 8: THE TOKENOMICS -->
+    <div class="axiom-box">
+      <span class="axiom-number">AXIOM 8</span>
+      <h3 class="axiom-heading">💎 The Token Has Real Utility, Not Just Speculation</h3>
+      
+      <p class="axiom-text">
+        <strong>$SONDE token is the currency of the network:</strong> It's not just a speculative asset—it has functional utility that creates sustainable value.
+      </p>
+      
+      <ul class="axiom-list">
+        <li><strong>Payment medium:</strong> Enterprises pay for data in $SONDE (creates buy pressure)</li>
+        <li><strong>Reward currency:</strong> Contributors earn $SONDE (creates distribution)</li>
+        <li><strong>Staking:</strong> Lock tokens to earn 5-30% APY + boost data rewards by 1.2-2x</li>
+        <li><strong>Governance:</strong> Vote on protocol changes (1 staked token = 1 vote)</li>
+        <li><strong>Burn mechanism:</strong> Enterprises burn tokens to buy "Data Credits" (deflationary)</li>
+      </ul>
+      
+      <div class="axiom-formula">
+        <strong>Value Accrual Logic:</strong>
+        <br><br>
+        More Users → More Data → More Enterprise Demand
+        <br>
+        More Demand → More Token Burns → Token Becomes Scarcer
+        <br>
+        Scarcity + Utility → Price Increases
+        <br>
+        Higher Price → Your Rewards Worth More
+        <br>
+        <span class="therefore">∴</span> Flywheel effect
+      </div>
+      
+      <p class="axiom-text">
+        <strong>Sustainable economics:</strong> Unlike pure emission models that rely on endless inflation, SONDE's tokenomics are backed by real enterprise revenue. 70% of every dollar enterprises pay flows to you, regardless of token price speculation.
+      </p>
+    </div>
+
+    <!-- AXIOM 9: THE PASSIVITY -->
+    <div class="axiom-box">
+      <span class="axiom-number">AXIOM 9</span>
+      <h3 class="axiom-heading">😴 Truly Passive—Zero Effort After Installation</h3>
+      
+      <p class="axiom-text">
+        <strong>No behavior change required:</strong> Unlike driving for Uber or mapping streets for Hivemapper, SONDE requires literally zero ongoing effort.
+      </p>
+      
+      <ul class="axiom-list">
+        <li><strong>Install once:</strong> 60 seconds to download and set up</li>
+        <li><strong>No daily tasks:</strong> Don't need to open the app, check in, or do anything</li>
+        <li><strong>No driving required:</strong> Works while you sleep, work, or sit at home</li>
+        <li><strong>Auto-earnings:</strong> Tokens deposit to your Seed Vault monthly, automatically</li>
+        <li><strong>Battery optimized:</strong> <3% battery drain (same as most background apps)</li>
+      </ul>
+      
+      <div class="proof-box">
+        <strong>Comparison:</strong> Hivemapper requires active driving (high effort). Helium requires buying $150+ hardware and optimizing placement (medium effort). SONDE requires installing an app once (zero ongoing effort). Passive earning at its truest form.
+      </div>
+    </div>
+
+    <!-- AXIOM 10: THE NETWORK EFFECTS -->
+    <div class="axiom-box">
+      <span class="axiom-number">AXIOM 10</span>
+      <h3 class="axiom-heading">🚀 Early Contributors Earn More (Network Effects)</h3>
+      
+      <p class="axiom-text">
+        <strong>First-mover advantage:</strong> Because rewards are split proportionally, early contributors when the network is small earn a larger percentage share.
+      </p>
+      
+      <div class="axiom-formula">
+        <strong>Scenario 1 (Early - 1,000 users):</strong>
+        <br>
+        You contribute 100 data points/day
+        <br>
+        Network total: 100,000 points/day
+        <br>
+        Your share: 100/100,000 = 0.1%
+        <br>
+        Your monthly earnings: 0.1% × $50,000 = <strong>$50</strong>
+        <br><br>
+        <strong>Scenario 2 (Late - 50,000 users):</strong>
+        <br>
+        You contribute 100 data points/day
+        <br>
+        Network total: 5,000,000 points/day
+        <br>
+        Your share: 100/5,000,000 = 0.002%
+        <br>
+        Your monthly earnings: 0.002% × $2,500,000 = <strong>$50</strong>
+        <br><br>
+        <span class="therefore">∴</span> Early = higher percentage share, but smaller total pool
+        <br>
+        Late = lower percentage share, but larger total pool
+        <br>
+        <strong>Result: Similar earnings, but early adopters also get:</strong>
+        <br>
+        • +15% bonus for being in first 10K users
+        <br>
+        • Lower token prices (potential appreciation)
+        <br>
+        • Governance influence (larger voting power)
+      </div>
+    </div>
+
+    <!-- TRUTH STATEMENT -->
+    <div class="truth-statement">
+      <strong>⚡ THE BOTTOM LINE</strong>
+      <br><br>
+      Your Seeker phone generates valuable data 24/7.
+      <br>
+      Big tech harvests it for free and profits billions.
+      <br>
+      SONDE redirects that revenue to you.
+      <br>
+      You earn $5-25/month, passively, while you sleep.
+      <br>
+      TEEPIN makes your data worth 3-10x more.
+      <br>
+      Privacy protected by technical design, not promises.
+      <br>
+      Token backed by real enterprise revenue, not hype.
+      <br><br>
+      <span class="therefore">∴</span> <strong>Install once, earn forever. It's that simple.</strong>
+    </div>
+
+    <!-- THE MATH -->
+    <div class="axiom-box">
+      <span class="axiom-number">THE MATH</span>
+      <h3 class="axiom-heading">🧮 Earnings Calculation Example</h3>
+      
+      <p class="axiom-text">
+        <strong>Let's calculate exactly how much an average user earns:</strong>
+      </p>
+      
+      <div class="axiom-formula">
+        <strong>Assumptions:</strong>
+        <br>
+        • 10,000 active users on network
+        <br>
+        • Enterprise revenue: $50,000/month
+        <br>
+        • Token emissions: 5,000,000 $SONDE/month
+        <br>
+        • $SONDE token price: $0.005
+        <br>
+        • You contribute 0.5% of network's data quality
+        <br><br>
+        
+        <strong>Your earnings (per month):</strong>
+        <br><br>
+        
+        <strong>1. Enterprise Revenue Share:</strong>
+        <br>
+        • Pool: $50,000 × 70% = $35,000 for contributors
+        <br>
+        • Your share: $35,000 × 0.5% = $175
+        <br>
+        • In tokens: $175 ÷ $0.005 = 35,000 $SONDE
+        <br><br>
+        
+        <strong>2. Token Emissions:</strong>
+        <br>
+        • Pool: 5,000,000 $SONDE/month
+        <br>
+        • Your share: 5,000,000 × 0.5% = 25,000 $SONDE
+        <br>
+        • USD value: 25,000 × $0.005 = $125
+        <br><br>
+        
+        <strong>Total Monthly Earnings:</strong>
+        <br>
+        • Tokens: 35,000 + 25,000 = <strong>60,000 $SONDE</strong>
+        <br>
+        • USD: $175 + $125 = <strong>$300</strong>
+        <br><br>
+        
+        <strong>With staking boost (12 months, 1.5x):</strong>
+        <br>
+        • Tokens: 60,000 × 1.5 = <strong>90,000 $SONDE</strong>
+        <br>
+        • USD: $300 × 1.5 = <strong>$450/month</strong>
+        <br><br>
+        
+        <span class="therefore">∴</span> Realistic earnings: $5-25/month for casual users, $50-500/month for power users in high-value locations
+      </div>
+    </div>
+
+    <!-- WHY SEEKER? -->
+    <div class="axiom-box">
+      <span class="axiom-number">WHY SEEKER?</span>
+      <h3 class="axiom-heading">📱 Why Solana Seeker Is Perfect for SONDE</h3>
+      
+      <p class="axiom-text">
+        <strong>SONDE only works on Seeker because of TEEPIN:</strong>
+      </p>
+      
+      <ul class="axiom-list">
+        <li><strong>Hardware attestation:</strong> No other phone has TEEPIN—this is Seeker's exclusive advantage</li>
+        <li><strong>Crypto-native:</strong> Built-in Seed Vault means seamless token payouts (no external wallet needed)</li>
+        <li><strong>Premium sensors:</strong> High-precision GPS, barometer, WiFi 6E, BT 5.3 = better data = higher earnings</li>
+        <li><strong>Power efficient:</strong> Optimized for background tasks without battery drain</li>
+        <li><strong>Developer access:</strong> Full sensor API access (iOS doesn't allow this level of background access)</li>
+      </ul>
+      
+      <div class="proof-box">
+        <strong>Market positioning:</strong> Seeker is "the phone that pays you"—SONDE is the killer app that makes this tagline literally true. First device sale motivator that's financially quantifiable ($60-300/year passive income).
+      </div>
+    </div>
+
+    <!-- COMPETITIVE ADVANTAGE -->
+    <div class="axiom-box">
+      <span class="axiom-number">vs. COMPETITORS</span>
+      <h3 class="axiom-heading">🏆 Why SONDE Wins</h3>
+      
+      <p class="axiom-text">
+        <strong>Direct comparison to alternatives:</strong>
+      </p>
+      
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; margin: 2rem 0;">
+          <thead>
+            <tr style="background: rgba(0, 240, 255, 0.1); border-bottom: 2px solid #00F0FF;">
+              <th style="padding: 1rem; text-align: left;">Factor</th>
+              <th style="padding: 1rem; text-align: center;">SONDE</th>
+              <th style="padding: 1rem; text-align: center;">Helium</th>
+              <th style="padding: 1rem; text-align: center;">Grass</th>
+              <th style="padding: 1rem; text-align: center;">Hivemapper</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+              <td style="padding: 1rem;"><strong>Hardware Cost</strong></td>
+              <td style="padding: 1rem; text-align: center; color: #10B981;">$0</td>
+              <td style="padding: 1rem; text-align: center; color: #EF4444;">$150-1,000</td>
+              <td style="padding: 1rem; text-align: center; color: #10B981;">$0</td>
+              <td style="padding: 1rem; text-align: center; color: #10B981;">$0</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+              <td style="padding: 1rem;"><strong>User Effort</strong></td>
+              <td style="padding: 1rem; text-align: center; color: #10B981;">Zero (passive)</td>
+              <td style="padding: 1rem; text-align: center; color: #F59E0B;">Low (setup)</td>
+              <td style="padding: 1rem; text-align: center; color: #10B981;">Zero</td>
+              <td style="padding: 1rem; text-align: center; color: #EF4444;">High (driving)</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+              <td style="padding: 1rem;"><strong>Data Verification</strong></td>
+              <td style="padding: 1rem; text-align: center; color: #10B981;">✅ TEEPIN</td>
+              <td style="padding: 1rem; text-align: center; color: #EF4444;">❌ None</td>
+              <td style="padding: 1rem; text-align: center; color: #EF4444;">❌ None</td>
+              <td style="padding: 1rem; text-align: center; color: #EF4444;">❌ None</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+              <td style="padding: 1rem;"><strong>Data Types</strong></td>
+              <td style="padding: 1rem; text-align: center; color: #10B981;">7 sensors</td>
+              <td style="padding: 1rem; text-align: center;">2 sensors</td>
+              <td style="padding: 1rem; text-align: center;">1 (bandwidth)</td>
+              <td style="padding: 1rem; text-align: center;">1 (imagery)</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+              <td style="padding: 1rem;"><strong>Monthly Earnings</strong></td>
+              <td style="padding: 1rem; text-align: center; color: #10B981;">$5-25</td>
+              <td style="padding: 1rem; text-align: center;">$5-15</td>
+              <td style="padding: 1rem; text-align: center;">$3-10</td>
+              <td style="padding: 1rem; text-align: center;">$20-100*</td>
+            </tr>
+            <tr>
+              <td style="padding: 1rem;"><strong>Scale Potential</strong></td>
+              <td style="padding: 1rem; text-align: center; color: #10B981;">150K devices Day 1</td>
+              <td style="padding: 1rem; text-align: center;">Slow (hardware)</td>
+              <td style="padding: 1rem; text-align: center;">Fast (software)</td>
+              <td style="padding: 1rem; text-align: center;">Slow (driving)</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="font-size: 0.875rem; color: rgba(255,255,255,0.5); text-align: center;">*Requires active daily driving</p>
+      </div>
+      
+      <div class="proof-box">
+        <strong>Competitive moat:</strong> TEEPIN attestation is exclusive to Solana Mobile devices. No other platform can replicate this—hardware-level security can't be copied with software. This is a sustainable, defensible advantage.
+      </div>
+    </div>
+
+    <!-- CALL TO ACTION -->
+    <div style="text-align: center; margin: 4rem 0 2rem;">
+      <a href="#download" class="cta-button" style="font-size: 1.25rem; padding: 1.25rem 2.5rem; text-decoration: none; display: inline-block;">
+        Start Earning Today →
+      </a>
+      <p style="margin-top: 1.5rem; color: rgba(255,255,255,0.5); font-size: 0.9rem;">
+        Install in 60 seconds • Zero ongoing effort • $5-25/month passive income
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- END OF AXIOMATIC EXPLANATION -->
