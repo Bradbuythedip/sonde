@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#08090E">
     <title>About SONDE - Building Decentralized Infrastructure</title>
     <meta name="description" content="Learn about SONDE's mission to build the world's largest decentralized sensor network on Solana">
     
@@ -16,6 +19,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: rgba(0, 240, 255, 0.1);
         }
         
         :root {
@@ -32,6 +36,11 @@
             --border: #2A2D38;
         }
         
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+        
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--background);
@@ -39,6 +48,7 @@
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
         }
         
         h1, h2, h3, h4, h5, h6 {
@@ -456,29 +466,101 @@
         
         /* Responsive */
         @media (max-width: 968px) {
+            nav {
+                padding: 0.75rem 1rem;
+            }
+            
             .nav-links {
                 display: none;
             }
             
+            .nav-container {
+                gap: 1rem;
+            }
+            
+            .logo {
+                font-size: 20px;
+                gap: 8px;
+            }
+            
+            .logo-icon {
+                width: 32px;
+                height: 32px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+                min-height: 44px;
+            }
+            
+            .about-hero {
+                padding: 120px 1.5rem 60px;
+            }
+            
             .about-hero h1 {
-                font-size: 42px;
+                font-size: 36px;
+                line-height: 1.1;
             }
             
             .about-hero p {
-                font-size: 18px;
+                font-size: 17px;
+                line-height: 1.5;
+            }
+            
+            .content-container {
+                padding: 60px 1.5rem;
             }
             
             .content-section h2 {
-                font-size: 32px;
+                font-size: 28px;
+                margin-bottom: 1.5rem;
             }
             
             .content-section h3 {
-                font-size: 24px;
+                font-size: 22px;
+                margin-top: 2rem;
+                margin-bottom: 1rem;
+            }
+            
+            .content-section p,
+            .content-section ul li {
+                font-size: 16px;
+                line-height: 1.7;
             }
             
             .quote {
-                font-size: 18px;
-                padding: 2rem;
+                font-size: 17px;
+                padding: 1.5rem;
+                margin: 2rem 0;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .about-hero h1 {
+                font-size: 32px;
+            }
+            
+            .about-hero p {
+                font-size: 16px;
+            }
+            
+            .content-section h2 {
+                font-size: 24px;
+            }
+            
+            .content-section h3 {
+                font-size: 20px;
+            }
+            
+            .quote {
+                font-size: 16px;
+                padding: 1.25rem;
             }
         }
     </style>
