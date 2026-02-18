@@ -1,0 +1,95 @@
+CRITICAL: BACKUP YOUR WALLET
+=============================
+
+Your wallet contains the private key that controls:
+- Your SOL balance
+- Your SONDE tokens
+- Mint authority (ability to create more tokens)
+
+If you lose access to this wallet, you lose everything!
+
+BACKUP CHECKLIST:
+-----------------
+
+[ ] Step 1: Write down seed phrase
+    - When you created the wallet, you saw 12-24 words
+    - Write these on paper (NOT digital)
+    - Store in 3 separate physical locations:
+      * Home safe
+      * Bank safe deposit box
+      * Trusted family member
+
+[ ] Step 2: Backup keypair file
+    File location: ~/sonde-wallet/deployer-keypair.json
+    
+    Copy to:
+    [ ] USB drive (2 copies)
+    [ ] Encrypted cloud backup
+    [ ] External hard drive
+
+[ ] Step 3: Encrypt backups
+    gpg --symmetric --cipher-algo AES256 deployer-keypair.json
+    # Creates deployer-keypair.json.gpg (encrypted)
+    # Store encrypted version in cloud (Dropbox, Google Drive)
+
+[ ] Step 4: Test recovery
+    # Try recovering from seed phrase
+    solana-keygen recover --outfile test-recovery.json
+    # Enter your seed phrase
+    # Verify it produces same public key
+
+[ ] Step 5: Document everything
+    Create a document with:
+    - Token mint address
+    - Deployer wallet public key
+    - Date of deployment
+    - Network (devnet/mainnet)
+    - Location of backups
+
+RECOVERY PROCESS:
+-----------------
+
+If you lose your wallet file but have seed phrase:
+
+1. solana-keygen recover --outfile new-wallet.json
+2. Enter your seed phrase
+3. Verify: solana-keygen pubkey new-wallet.json
+4. Should match your original public key
+
+If you lose everything (no seed phrase, no keypair):
+- Your tokens are PERMANENTLY LOST
+- No one can recover them
+- This is why backups are critical!
+
+SECURITY BEST PRACTICES:
+------------------------
+
+✅ DO:
+- Keep seed phrase offline (paper only)
+- Use multiple backup locations
+- Encrypt digital backups
+- Test recovery process
+- Use hardware wallet for large amounts
+
+❌ DON'T:
+- Store seed phrase digitally (no photos, no cloud)
+- Share private key with anyone
+- Use same wallet for testing and mainnet
+- Keep all tokens in one wallet
+- Forget to test backups
+
+COLD STORAGE SETUP:
+-------------------
+
+For maximum security, create a cold storage wallet:
+
+1. Create offline computer (air-gapped)
+2. Generate wallet on offline computer
+3. Transfer 90% of tokens to cold wallet
+4. Store cold wallet seed phrase in bank vault
+5. Use hot wallet (10%) for daily operations
+
+This way, even if your hot wallet is compromised,
+90% of tokens remain safe in cold storage.
+
+REMEMBER: You are your own bank. No one can help you recover lost keys!

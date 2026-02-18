@@ -1,0 +1,47 @@
+📦 SONDE TOKEN DEPLOYMENT PACKAGE READY
+
+Files in this package:
+----------------------
+1. README_DEPLOYMENT.txt - Full deployment guide
+2. COMMANDS_TO_RUN.txt - Step-by-step commands
+3. BACKUP_INSTRUCTIONS.txt - Critical security info
+4. token-metadata.json - Token metadata for listings
+5. quick_deploy.sh - Automated deployment script
+
+QUICK START:
+------------
+
+Option A - Automated (Recommended):
+  bash quick_deploy.sh
+
+Option B - Manual:
+  Follow commands in COMMANDS_TO_RUN.txt
+
+WHAT HAPPENS:
+-------------
+1. Fresh wallet is created
+2. You get a seed phrase (WRITE IT DOWN!)
+3. Token is created on Solana devnet
+4. 100 billion SONDE tokens are minted
+5. All info is saved to ~/sonde-wallet/
+
+AFTER DEPLOYMENT:
+-----------------
+1. Test on devnet first
+2. Backup your seed phrase (3 locations)
+3. Deploy to mainnet when ready
+4. Create liquidity pool on Raydium
+5. Airdrop to Seeker wallets
+
+SUPPORT:
+--------
+If you need help, check:
+- README_DEPLOYMENT.txt for detailed instructions
+- Solana Discord: discord.gg/solana
+- SPL Token docs: spl.solana.com/token
+
+⚠️  CRITICAL: BACKUP YOUR SEED PHRASE!
+Without it, you lose access to everything!
+
+Ready to deploy? Run:
+  bash quick_deploy.sh

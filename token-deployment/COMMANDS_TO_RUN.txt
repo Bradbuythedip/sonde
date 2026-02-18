@@ -1,0 +1,83 @@
+# SONDE TOKEN DEPLOYMENT COMMANDS
+# Copy and paste these commands one by one
+
+# 1. Install Solana (if not installed)
+sh -c "$(curl -sSfL https://release.solana.com/stable/install)"
+export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
+
+# 2. Install SPL Token CLI (if not installed)
+cargo install spl-token-cli
+
+# 3. Create wallet directory
+mkdir -p ~/sonde-wallet
+cd ~/sonde-wallet
+
+# 4. Generate new wallet (SAVE THE SEED PHRASE!)
+solana-keygen new --outfile ~/sonde-wallet/deployer-keypair.json
+
+# 5. Set configuration
+solana config set --keypair ~/sonde-wallet/deployer-keypair.json
+solana config set --url https://api.devnet.solana.com
+
+# 6. Get wallet address
+DEPLOYER_WALLET=$(solana-keygen pubkey ~/sonde-wallet/deployer-keypair.json)
+echo "Your wallet: $DEPLOYER_WALLET"
+
+# 7. Get test SOL (devnet)
+solana airdrop 2
+solana balance
+
+# 8. Create token (100 Billion supply, 9 decimals)
+spl-token create-token --decimals 9
+
+# SAVE THE TOKEN MINT ADDRESS FROM OUTPUT!
+# Example: Creating token 7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU
+
+# 9. Set TOKEN_MINT variable (replace with YOUR address)
+TOKEN_MINT="<PASTE_YOUR_TOKEN_MINT_HERE>"
+echo $TOKEN_MINT > ~/sonde-wallet/token_mint.txt
+
+# 10. Create token account
+spl-token create-account $TOKEN_MINT
+
+# 11. Mint 100 billion tokens
+spl-token mint $TOKEN_MINT 100000000000
+
+# 12. Verify deployment
+spl-token supply $TOKEN_MINT
+spl-token balance $TOKEN_MINT
+spl-token display $TOKEN_MINT
+
+# 13. View on explorer
+echo "https://explorer.solana.com/address/$TOKEN_MINT?cluster=devnet"
+
+# ✅ DEPLOYMENT COMPLETE!
+
+# OPTIONAL: Export your private key (KEEP SECRET!)
+cat ~/sonde-wallet/deployer-keypair.json
+
+# MAINNET DEPLOYMENT:
+# When ready to deploy to mainnet, run these commands:
+
+# 1. Switch to mainnet
+solana config set --url https://api.mainnet-beta.solana.com
+
+# 2. Fund wallet with 1-2 real SOL
+solana balance  # Check current balance
+# Send SOL from exchange to: $DEPLOYER_WALLET
+
+# 3. Create token on mainnet
+spl-token create-token --decimals 9
+
+# 4. Save mainnet mint address
+TOKEN_MINT_MAINNET="<PASTE_MAINNET_MINT_HERE>"
+
+# 5. Create account and mint
+spl-token create-account $TOKEN_MINT_MAINNET
+spl-token mint $TOKEN_MINT_MAINNET 100000000000
+
+# 6. Verify mainnet deployment
+echo "https://explorer.solana.com/address/$TOKEN_MINT_MAINNET"
+
+# 7. Backup everything!
+cp ~/sonde-wallet/deployer-keypair.json ~/sonde-wallet/BACKUP-deployer-keypair.json

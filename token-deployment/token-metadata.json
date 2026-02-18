@@ -1,0 +1,38 @@
+{
+  "name": "SONDE",
+  "symbol": "SONDE",
+  "description": "Spatial Oracle Network for Decentralized Environments - Turn your Solana Seeker device into a passive income generator by sharing anonymized sensor data. Earn $5-25/month while you sleep.",
+  "image": "https://sonde-orcin.vercel.app/logo.png",
+  "external_url": "https://sonde-orcin.vercel.app",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "DePIN"
+    },
+    {
+      "trait_type": "Blockchain",
+      "value": "Solana"
+    },
+    {
+      "trait_type": "Device",
+      "value": "Seeker Exclusive"
+    },
+    {
+      "trait_type": "Use Case",
+      "value": "Sensor Data Network"
+    },
+    {
+      "trait_type": "Total Supply",
+      "value": "100000000000"
+    }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "https://sonde-orcin.vercel.app/logo.png",
+        "type": "image/png"
+      }
+    ],
+    "category": "token"
+  }
+}
