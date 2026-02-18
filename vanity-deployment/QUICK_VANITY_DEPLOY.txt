@@ -1,0 +1,140 @@
+SONDE VANITY WALLET & TOKEN - MAINNET DEPLOYMENT
+=================================================
+
+OPTION 1: QUICK COMMANDS (Copy & Paste)
+----------------------------------------
+
+# 1. Generate vanity wallet starting with "Sond" (~15-30 min)
+solana-keygen grind --starts-with Sond:1 --ignore-case
+
+# OR for faster (3 chars "SND", ~30 seconds):
+solana-keygen grind --starts-with SND:1 --ignore-case
+
+# 2. Find the generated file
+ls Sond*.json
+# or
+ls SND*.json
+
+# 3. Save it properly
+mkdir -p ~/sonde-wallet
+mv Sond*.json ~/sonde-wallet/vanity-deployer.json
+# (or mv SND*.json if you used that)
+
+# 4. Get your vanity address
+solana-keygen pubkey ~/sonde-wallet/vanity-deployer.json
+
+# 5. Configure Solana for MAINNET
+solana config set --keypair ~/sonde-wallet/vanity-deployer.json
+solana config set --url https://api.mainnet-beta.solana.com
+
+# 6. Send 1-2 SOL to your vanity address
+# Buy SOL on Coinbase/Binance and send to the address from step 4
+
+# 7. Check balance
+solana balance
+
+# 8. Create token (100 Billion supply)
+spl-token create-token --decimals 9
+
+# SAVE THE TOKEN MINT ADDRESS!
+
+# 9. Set variable (replace with YOUR token mint)
+TOKEN_MINT="<YOUR_TOKEN_MINT_HERE>"
+
+# 10. Create token account
+spl-token create-account $TOKEN_MINT
+
+# 11. Mint 100 billion tokens
+spl-token mint $TOKEN_MINT 100000000000
+
+# 12. Verify
+spl-token supply $TOKEN_MINT
+spl-token balance $TOKEN_MINT
+
+# 13. View on explorer
+echo "https://solscan.io/token/$TOKEN_MINT"
+
+✅ DONE! Your vanity token is live on mainnet!
+
+
+OPTION 2: AUTOMATED SCRIPT
+---------------------------
+
+We can create an automated script, but solana-keygen grind
+doesn't work well in scripts. Better to run manually.
+
+
+VANITY PATTERN OPTIONS:
+-----------------------
+
+Difficulty & Time Estimates:
+
+Pattern         | Example                                    | Time
+----------------|--------------------------------------------|---------
+1 char          | S...                                       | Instant
+2 chars         | SO...                                      | 1 sec
+3 chars (SND)   | SND...                                     | 30 sec
+4 chars (Sond)  | Sond...                                    | 30 min
+5 chars (Sonde) | Sonde...                                   | 20 hours
+6 chars         | SONDEx...                                  | 30 days
+
+RECOMMENDED: Use "Sond" (4 chars) or "SND" (3 chars)
+
+
+WHAT YOU'LL GET:
+----------------
+
+Vanity Wallet Example:
+SondG7k3nYqZ8xqW5Yp9mK2rJ3hN4vQ8tL1sD6fA9cE2bT5
+
+Token Mint Example:
+(Random, but if lucky could also start with pattern)
+
+
+AFTER DEPLOYMENT:
+-----------------
+
+1. Backup keypair:
+   cp ~/sonde-wallet/vanity-deployer.json /usb/backup/
+
+2. Create liquidity pool:
+   https://raydium.io/liquidity/create-pool
+   Pair: 50M SONDE + $25K USDC
+
+3. Submit to CoinGecko:
+   https://www.coingecko.com/en/coins/new
+
+4. Airdrop to Seeker wallets:
+   spl-token transfer $TOKEN_MINT 500 <SEEKER_WALLET>
+
+
+IMPORTANT NOTES:
+----------------
+
+⚠️  This deploys to MAINNET (real money!)
+⚠️  You need 1-2 real SOL (~$150-300)
+⚠️  Backup your keypair immediately
+⚠️  Write down seed phrase when generating vanity wallet
+⚠️  Test on devnet first if unsure
+
+
+SEED PHRASE:
+------------
+
+When you run solana-keygen grind, it will display:
+"Save this seed phrase to recover your keypair: [12-24 words]"
+
+WRITE THESE WORDS DOWN ON PAPER!
+Store in 3 separate locations.
+
+Without seed phrase, if you lose the keypair file,
+your tokens are PERMANENTLY LOST!
+
+
+READY TO DEPLOY?
+-----------------
+
+Start with step 1 above (generate vanity wallet).
+Takes 15-30 minutes for "Sond" pattern.
+
+Good luck! 🚀
