@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SONDE - The Pitch</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            background: #ffffff;
+            color: #000000;
+            line-height: 1.8;
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #000;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 50px 0 20px 0;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+        
+        h3 {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 30px 0 15px 0;
+        }
+        
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            border: 2px solid #000;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #000;
+        }
+        
+        th {
+            background: #000;
+            color: #fff;
+            font-weight: bold;
+        }
+        
+        .highlight {
+            background: #f0f0f0;
+            padding: 20px;
+            border-left: 4px solid #000;
+            margin: 25px 0;
+        }
+        
+        .mono {
+            font-family: 'Courier New', monospace;
+            background: #f5f5f5;
+            padding: 2px 6px;
+        }
+        
+        .section {
+            margin-bottom: 60px;
+        }
+        
+        .footer {
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 3px solid #000;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        a {
+            color: #000;
+            text-decoration: underline;
+        }
+        
+        a:hover {
+            background: #000;
+            color: #fff;
+        }
+        
+        .ascii-art {
+            font-family: 'Courier New', monospace;
+            white-space: pre;
+            font-size: 0.7rem;
+            line-height: 1.2;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+            .ascii-art {
+                font-size: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>SONDE</h1>
+<p><strong>Spatial Oracle Network for Decentralized Environments</strong></p>
+
+<div class="highlight">
+<p><strong>The Problem:</strong> Your phone constantly generates valuable data (location, WiFi signals, cell towers, network quality). Tech companies collect it, sell it for billions. You get $0.</p>
+<p><strong>The Solution:</strong> Install SONDE. Earn $5-25/month in crypto. Same data. You get paid.</p>
+</div>
+
+<div class="section">
+<h2>1. What We Do</h2>
+
+<p>SONDE is a mobile app for Solana Seeker devices that collects anonymized sensor data in the background. Users earn cryptocurrency tokens. We sell the data to enterprises. Simple.</p>
+
+<h3>Seven Data Streams</h3>
+<table>
+    <tr>
+        <th>Data Type</th>
+        <th>What We Collect</th>
+        <th>Privacy Protection</th>
+    </tr>
+    <tr>
+        <td>Cell Signal</td>
+        <td>RSSI, RSRP, RSRQ, network type</td>
+        <td>No PII, just signal quality</td>
+    </tr>
+    <tr>
+        <td>WiFi</td>
+        <td>Network density, signal strength</td>
+        <td>SSIDs hashed (one-way)</td>
+    </tr>
+    <tr>
+        <td>Bluetooth</td>
+        <td>Device count only</td>
+        <td>No MAC addresses stored</td>
+    </tr>
+    <tr>
+        <td>GPS</td>
+        <td>Approximate location</td>
+        <td>Fuzzed to ~100m radius</td>
+    </tr>
+    <tr>
+        <td>Motion</td>
+        <td>Walking, driving, stationary</td>
+        <td>No tracking, just state</td>
+    </tr>
+    <tr>
+        <td>Barometer</td>
+        <td>Atmospheric pressure</td>
+        <td>Anonymous</td>
+    </tr>
+    <tr>
+        <td>Network Speed</td>
+        <td>Latency, bandwidth</td>
+        <td>No browsing history</td>
+    </tr>
+</table>
+
+<p><strong>Collection frequency:</strong> Every 5 minutes, automatic.<br>
+<strong>Battery impact:</strong> Less than 2% per day.<br>
+<strong>Data usage:</strong> Approximately 10MB per day.</p>
+
+<h3>Hardware Attestation (TEEPIN)</h3>
+<p>Seeker devices have a secure enclave that cryptographically signs each data submission. This makes the data unfakeable. Enterprises pay 3-10x more for attested data because they can trust it. This is our moat.</p>
+
+</div>
+
+<div class="section">
+<h2>2. Where The Money Comes From</h2>
+
+<p>We sell data to five customer segments. This is not theoretical—these companies already buy this data from competitors, often at higher prices for worse quality.</p>
+
+<h3>Customer Segment 1: Telecommunications ($50K-500K/month)</h3>
+<p><strong>Buyers:</strong> Verizon, T-Mobile, AT&T, American Tower, Crown Castle, tower companies.</p>
+
+<p><strong>What they buy:</strong> Cell signal quality data—RSSI, RSRP, RSRQ, signal-to-noise ratio, network type (5G/LTE/4G), coverage maps.</p>
+
+<p><strong>Why they need it:</strong></p>
+<ul>
+    <li>Network optimization: Identify dead zones, weak coverage areas, capacity constraints</li>
+    <li>5G rollout planning: Determine where to install new towers</li>
+    <li>Regulatory compliance: FCC requires coverage reporting</li>
+    <li>Competitive benchmarking: Compare against competitors</li>
+</ul>
+
+<p><strong>Current alternatives:</strong> Telcos hire contractors to drive around cities with specialized equipment ("drive testing"). Cost: $50,000-$100,000 per city. Done once per year. SONDE provides continuous, real-time data at a fraction of the cost.</p>
+
+<p><strong>Precedent:</strong> OpenSignal built exactly this model. Crowdsourced cell signal data from 10+ million users. Acquired by Ookla (Speedtest.net) for $100+ million in 2018. OpenSignal didn't pay users anything. We do.</p>
+
+<h3>Customer Segment 2: Internet Service Providers ($20K-200K/month)</h3>
+<p><strong>Buyers:</strong> Comcast, Spectrum, Verizon FiOS, municipal broadband projects, wireless ISPs.</p>
+
+<p><strong>What they buy:</strong> WiFi density maps, internet speed measurements (latency, bandwidth, jitter), coverage quality.</p>
+
+<p><strong>Why they need it:</strong></p>
+<ul>
+    <li>Service expansion: Where should we build out fiber or add WiFi hotspots?</li>
+    <li>Quality monitoring: Are customers getting advertised speeds?</li>
+    <li>Competitive intelligence: How does our performance compare?</li>
+    <li>Customer retention: Identify areas with poor service before customers churn</li>
+</ul>
+
+<p><strong>Current alternatives:</strong> Speedtest by Ookla, customer surveys, FCC broadband maps (notoriously inaccurate). ISPs spend millions on network analytics.</p>
+
+<h3>Customer Segment 3: Transportation & Logistics ($10K-100K/month)</h3>
+<p><strong>Buyers:</strong> Uber, Lyft, DoorDash, logistics companies, navigation providers (Google Maps, Waze, Apple Maps).</p>
+
+<p><strong>What they buy:</strong> Movement patterns, traffic density, motion state (walking/driving/stationary), route optimization data.</p>
+
+<p><strong>Why they need it:</strong></p>
+<ul>
+    <li>Real-time traffic: Accurate congestion data for routing</li>
+    <li>ETA prediction: Better arrival time estimates</li>
+    <li>Demand forecasting: Where will riders need pickups?</li>
+    <li>Infrastructure planning: Cities use this for road improvements</li>
+</ul>
+
+<p><strong>Precedent:</strong> Google Maps generates $5+ billion per year, primarily from location data. Waze (acquired for $1.3 billion) was built on crowdsourced traffic data. The market is proven.</p>
+
+<h3>Customer Segment 4: Retail & Marketing ($5K-50K/month)</h3>
+<p><strong>Buyers:</strong> Retail chains, shopping malls, marketing agencies, foot traffic analytics firms (SafeGraph, Foursquare, PlaceIQ).</p>
+
+<p><strong>What they buy:</strong> Foot traffic counts (Bluetooth proximity), dwell time, visit frequency, customer flow patterns.</p>
+
+<p><strong>Why they need it:</strong></p>
+<ul>
+    <li>Store performance: Which locations get the most foot traffic?</li>
+    <li>Marketing attribution: Did our ad campaign drive store visits?</li>
+    <li>Competitive analysis: Is the competitor across the street busier?</li>
+    <li>Real estate decisions: Should we renew this lease?</li>
+</ul>
+
+<p><strong>Market size:</strong> Location intelligence market is $15+ billion annually. Companies like SafeGraph and Foursquare raised hundreds of millions to sell exactly this type of data.</p>
+
+<h3>Customer Segment 5: Weather & Climate ($5K-30K/month)</h3>
+<p><strong>Buyers:</strong> Weather.com, AccuWeather, NOAA, climate research institutions, insurance companies.</p>
+
+<p><strong>What they buy:</strong> Barometric pressure readings, temperature, atmospheric data at hyperlocal resolution.</p>
+
+<p><strong>Why they need it:</strong></p>
+<ul>
+    <li>Hyperlocal forecasts: City-level accuracy requires dense sensor networks</li>
+    <li>Storm tracking: Real-time pressure changes predict weather events</li>
+    <li>Climate research: Long-term atmospheric trends</li>
+    <li>Insurance: Risk assessment for property policies</li>
+</ul>
+
+<p><strong>Precedent:</strong> Weather Underground (acquired by IBM) built a network of home weather stations. Crowdsourced weather data is valuable and proven.</p>
+
+<h3>Revenue Model: Simple Math</h3>
+
+<div class="highlight">
+<p><strong>How money flows:</strong></p>
+<ol>
+    <li>Enterprise pays SONDE for data access (USDC or $SONDE token)</li>
+    <li>70% goes to data contributors (users)</li>
+    <li>30% goes to protocol (operations, development)</li>
+    <li>Users receive tokens automatically each month</li>
+</ol>
+</div>
+
+<table>
+    <tr>
+        <th>Timeline</th>
+        <th>Customers</th>
+        <th>Monthly Revenue</th>
+        <th>User Split (70%)</th>
+        <th>Protocol (30%)</th>
+    </tr>
+    <tr>
+        <td>Month 6</td>
+        <td>2 pilots</td>
+        <td>$30,000</td>
+        <td>$21,000</td>
+        <td>$9,000</td>
+    </tr>
+    <tr>
+        <td>Year 1</td>
+        <td>5 paying</td>
+        <td>$100,000</td>
+        <td>$70,000</td>
+        <td>$30,000</td>
+    </tr>
+    <tr>
+        <td>Year 2</td>
+        <td>15 paying</td>
+        <td>$500,000</td>
+        <td>$350,000</td>
+        <td>$150,000</td>
+    </tr>
+    <tr>
+        <td>Year 3</td>
+        <td>25+ paying</td>
+        <td>$1,500,000</td>
+        <td>$1,050,000</td>
+        <td>$450,000</td>
+    </tr>
+</table>
+
+<p><strong>Example (Year 1):</strong><br>
+10,000 active users contribute data.<br>
+Enterprise revenue: $100,000/month.<br>
+User share: $70,000/month.<br>
+Per user: $7/month from revenue sharing.<br>
+Plus token emissions: ~$10-15/month.<br>
+<strong>Total per user: $17-22/month.</strong> Target achieved.</p>
+
+</div>
+
+<div class="section">
+<h2>3. Why Enterprises Will Pay</h2>
+
+<h3>Reason 1: We Have Hardware Attestation</h3>
+<p>Every data point from a Seeker device is cryptographically signed by a secure enclave (TEEPIN). This means:</p>
+<ul>
+    <li>Data cannot be spoofed or faked</li>
+    <li>No GPS spoofing, no emulators, no bots</li>
+    <li>Regulatory-grade quality (FCC, etc.)</li>
+    <li>Worth 3-10x premium pricing</li>
+</ul>
+<p>Competitors cannot replicate this without access to Seeker hardware. This is our defensible advantage.</p>
+
+<h3>Reason 2: Cost-Effective Alternative</h3>
+<p>Current enterprise costs:</p>
+<ul>
+    <li>Telco drive testing: $50K-100K per city, once per year</li>
+    <li>Data brokers: $20K-200K/month for inferior data</li>
+    <li>In-house collection: Millions in infrastructure and personnel</li>
+</ul>
+<p>SONDE provides better data, real-time, at lower cost.</p>
+
+<h3>Reason 3: Coverage & Density</h3>
+<p>150,000+ Solana Seeker devices already sold. Users carry phones everywhere: homes, offices, highways, rural areas, international travel. Fixed sensors can't compete with this coverage.</p>
+
+<h3>Reason 4: They Already Pay For Worse Data</h3>
+<p>This is not a new market. Enterprises currently buy:</p>
+<ul>
+    <li>Location data from data brokers</li>
+    <li>Speedtest data from Ookla</li>
+    <li>Foot traffic from SafeGraph/Foursquare</li>
+    <li>Weather data from Weather Underground</li>
+</ul>
+<p>SONDE combines all of these, adds hardware attestation, and costs less. Switching is obvious.</p>
+
+</div>
+
+<div class="section">
+<h2>4. Token Economics</h2>
+
+<p><strong>Token:</strong> $SONDE (SPL token on Solana)<br>
+<strong>Total Supply:</strong> 1,000,000,000 (fixed cap)<br>
+<strong>Decimals:</strong> 9</p>
+
+<h3>Distribution</h3>
+<table>
+    <tr>
+        <th>Allocation</th>
+        <th>Amount</th>
+        <th>Percent</th>
+        <th>Vesting</th>
+    </tr>
+    <tr>
+        <td>Community Rewards</td>
+        <td>600,000,000</td>
+        <td>60%</td>
+        <td>10 years</td>
+    </tr>
+    <tr>
+        <td>Ecosystem Fund</td>
+        <td>150,000,000</td>
+        <td>15%</td>
+        <td>5 years</td>
+    </tr>
+    <tr>
+        <td>Team & Advisors</td>
+        <td>100,000,000</td>
+        <td>10%</td>
+        <td>4 years, 1yr cliff</td>
+    </tr>
+    <tr>
+        <td>Investors</td>
+        <td>75,000,000</td>
+        <td>7.5%</td>
+        <td>3 years</td>
+    </tr>
+    <tr>
+        <td>Liquidity</td>
+        <td>50,000,000</td>
+        <td>5%</td>
+        <td>Immediate</td>
+    </tr>
+    <tr>
+        <td>Treasury</td>
+        <td>25,000,000</td>
+        <td>2.5%</td>
+        <td>As needed</td>
+    </tr>
+</table>
+
+<h3>Emission Schedule</h3>
+<p>Community rewards emit over 10 years, halving every 2 years:</p>
+<table>
+    <tr>
+        <th>Years</th>
+        <th>Daily Emission</th>
+        <th>Annual Emission</th>
+    </tr>
+    <tr>
+        <td>1-2</td>
+        <td>164,384</td>
+        <td>60,000,000</td>
+    </tr>
+    <tr>
+        <td>3-4</td>
+        <td>82,192</td>
+        <td>30,000,000</td>
+    </tr>
+    <tr>
+        <td>5-6</td>
+        <td>41,096</td>
+        <td>15,000,000</td>
+    </tr>
+    <tr>
+        <td>7-8</td>
+        <td>20,548</td>
+        <td>7,500,000</td>
+    </tr>
+    <tr>
+        <td>9-10</td>
+        <td>10,274</td>
+        <td>3,750,000</td>
+    </tr>
+    <tr>
+        <td>11+</td>
+        <td>10,274</td>
+        <td>3,750,000</td>
+    </tr>
+</table>
+
+<h3>Burn Mechanism</h3>
+<p>Enterprises can burn $SONDE tokens to purchase "Data Credits":</p>
+<ul>
+    <li>1 Data Credit = $0.001 (fixed USD value)</li>
+    <li>1 DC = 1 API call or 1 MB of data</li>
+    <li>Burning tokens reduces supply permanently</li>
+</ul>
+
+<p><strong>Equilibrium:</strong> By Year 2, enterprise burns should exceed emissions, making the token deflationary. This supports long-term price appreciation.</p>
+
+<h3>Price Projections</h3>
+<table>
+    <tr>
+        <th>Period</th>
+        <th>Users</th>
+        <th>Token Price</th>
+        <th>Market Cap</th>
+        <th>User Earnings/mo</th>
+    </tr>
+    <tr>
+        <td>Month 6</td>
+        <td>2,000</td>
+        <td>$0.008</td>
+        <td>$640K</td>
+        <td>$15-30</td>
+    </tr>
+    <tr>
+        <td>Year 1</td>
+        <td>10,000</td>
+        <td>$0.02</td>
+        <td>$2.2M</td>
+        <td>$10-25</td>
+    </tr>
+    <tr>
+        <td>Year 2</td>
+        <td>50,000</td>
+        <td>$0.05</td>
+        <td>$8.5M</td>
+        <td>$20-40</td>
+    </tr>
+    <tr>
+        <td>Year 3</td>
+        <td>100,000</td>
+        <td>$0.15</td>
+        <td>$30M</td>
+        <td>$30-60</td>
+    </tr>
+</table>
+
+<p><strong>Note:</strong> These are conservative estimates based on comparable projects (Helium: $300M, Hivemapper: $150M, NATIX: $40M). Our hardware attestation and multi-sensor approach justify similar or higher valuations.</p>
+
+</div>
+
+<div class="section">
+<h2>5. Competition</h2>
+
+<table>
+    <tr>
+        <th>Project</th>
+        <th>Market Cap</th>
+        <th>Data Type</th>
+        <th>Hardware Cost</th>
+        <th>User Effort</th>
+        <th>Attestation</th>
+    </tr>
+    <tr>
+        <td>Helium Mobile</td>
+        <td>$300M</td>
+        <td>5G hotspots</td>
+        <td>$500+</td>
+        <td>High</td>
+        <td>Yes (LoRa)</td>
+    </tr>
+    <tr>
+        <td>Hivemapper</td>
+        <td>$150M</td>
+        <td>Street imagery</td>
+        <td>$500 dashcam</td>
+        <td>High (driving)</td>
+        <td>Yes</td>
+    </tr>
+    <tr>
+        <td>NATIX</td>
+        <td>$40M</td>
+        <td>AI dashcam</td>
+        <td>Phone app</td>
+        <td>Medium (driving)</td>
+        <td>No</td>
+    </tr>
+    <tr>
+        <td>OpenSignal</td>
+        <td>$100M exit</td>
+        <td>Cell signal</td>
+        <td>Phone app</td>
+        <td>Low</td>
+        <td>No</td>
+    </tr>
+    <tr>
+        <td><strong>SONDE</strong></td>
+        <td><strong>TBD</strong></td>
+        <td><strong>7 sensors</strong></td>
+        <td><strong>$0 (Seeker)</strong></td>
+        <td><strong>Zero (passive)</strong></td>
+        <td><strong>Yes (TEEPIN)</strong></td>
+    </tr>
+</table>
+
+<h3>Our Advantages</h3>
+<ol>
+    <li><strong>Passive Income:</strong> Users do nothing after installation. Helium and Hivemapper require active participation.</li>
+    <li><strong>No Hardware Cost:</strong> Uses existing Seeker devices. Competitors require $500+ purchases.</li>
+    <li><strong>Multi-Sensor:</strong> Seven data types. Competitors focus on one or two.</li>
+    <li><strong>Hardware Attestation:</strong> TEEPIN is stronger than software-only verification (NATIX) and competitive with LoRa (Helium).</li>
+    <li><strong>Proven Market:</strong> OpenSignal validated demand. We improve on their model by paying users.</li>
+</ol>
+
+</div>
+
+<div class="section">
+<h2>6. Current Status</h2>
+
+<h3>What's Built (70% complete)</h3>
+<ul>
+    <li><strong>SDK:</strong> 2,500+ lines of production code. TypeScript + Kotlin. All 7 sensors implemented.</li>
+    <li><strong>TEEPIN Integration:</strong> Hardware attestation working on Seeker devices.</li>
+    <li><strong>Web PWA:</strong> Live demo at sonde-orcin.vercel.app</li>
+    <li><strong>Privacy Features:</strong> GPS fuzzing, SSID hashing, data anonymization complete.</li>
+    <li><strong>Documentation:</strong> Complete technical and user documentation.</li>
+</ul>
+
+<h3>What's Needed (30% remaining)</h3>
+<ul>
+    <li><strong>Android App UI:</strong> 2-4 weeks (MainActivity, screens, navigation)</li>
+    <li><strong>Backend API:</strong> 1-2 weeks (data ingestion, reward calculation)</li>
+    <li><strong>Smart Contracts:</strong> 2-3 weeks (token, rewards, staking)</li>
+    <li><strong>Testing:</strong> 4 weeks (alpha, beta, device testing)</li>
+</ul>
+
+<p><strong>Timeline to Launch:</strong> 12 weeks from funding.</p>
+
+<h3>Funding Need</h3>
+<p><strong>Amount:</strong> $750,000<br>
+<strong>Use:</strong></p>
+<ul>
+    <li>Development team (2 engineers): $300,000</li>
+    <li>Backend infrastructure: $100,000</li>
+    <li>Marketing & user acquisition: $200,000</li>
+    <li>B2B sales (1 enterprise rep): $100,000</li>
+    <li>Legal & compliance: $50,000</li>
+</ul>
+
+<p><strong>Valuation:</strong> $5,000,000 pre-money<br>
+<strong>Equity Offered:</strong> 15%<br>
+<strong>Token Allocation:</strong> 7.5% (75,000,000 $SONDE, 3-year vest)</p>
+
+</div>
+
+<div class="section">
+<h2>7. Go-To-Market Strategy</h2>
+
+<h3>User Acquisition (B2C)</h3>
+<p><strong>Phase 1 (Month 1-3):</strong> Seeker Community<br>
+Target the 150,000+ existing Seeker owners via Solana Discord, Twitter, Reddit. Early adopter incentives: 5x rewards for first 1,000 users. Goal: 1,000 users.</p>
+
+<p><strong>Phase 2 (Month 3-9):</strong> Crypto-Native<br>
+Expand to broader DeFi/DePIN audience through crypto Twitter, Telegram, podcasts. Referral bonuses: $10 per friend. Goal: 5,000 users.</p>
+
+<p><strong>Phase 3 (Month 9+):</strong> Mainstream<br>
+Google Play store optimization, paid ads, PR. Messaging: "Earn $20/month while you sleep." Goal: 50,000+ users.</p>
+
+<h3>Enterprise Sales (B2B)</h3>
+<p><strong>Phase 1 (Month 3-9):</strong> Free Pilots<br>
+Offer 3-month free data access to 10 target companies (2 per vertical). Provide dashboard and API. Collect case studies. Convert 2-3 to paid.</p>
+
+<p><strong>Phase 2 (Month 9-18):</strong> Outbound Sales<br>
+Hire enterprise sales rep with telecom/ISP experience. Cold outreach, conferences (CTIA, MWC), LinkedIn. Use pilot case studies for credibility. Goal: 1-2 new customers per month.</p>
+
+<p><strong>Phase 3 (Month 18+):</strong> Partnerships<br>
+Partner with data brokers (SafeGraph, Oracle, Foursquare) for white-label or reseller deals. Self-serve API for smaller customers. Goal: 10-20 customers.</p>
+
+</div>
+
+<div class="section">
+<h2>8. Risks & Mitigation</h2>
+
+<h3>Risk: Low User Adoption</h3>
+<p><strong>Mitigation:</strong> Aggressive early adopter incentives (5x rewards), marketing through 150K Seeker owner base, referral program, partnership with Solana Mobile team.</p>
+
+<h3>Risk: No Enterprise Customers</h3>
+<p><strong>Mitigation:</strong> Free pilots reduce barrier to entry. Market is proven (OpenSignal, Google Maps). Sales rep with industry connections. Flexible pricing.</p>
+
+<h3>Risk: Battery Drain Too High</h3>
+<p><strong>Mitigation:</strong> Extensive optimization and testing. Target <2% per day. Allow users to customize collection frequency if needed.</p>
+
+<h3>Risk: Regulatory Issues</h3>
+<p><strong>Mitigation:</strong> Privacy-first design (GDPR compliant from day one). Legal counsel engaged early. No PII collected. Decentralized governance (DAO) reduces regulatory surface area.</p>
+
+<h3>Risk: Token Price Collapse</h3>
+<p><strong>Mitigation:</strong> Dual revenue model (emissions + enterprise revenue). Treasury buybacks. Burn mechanisms. Staking locks to reduce sell pressure.</p>
+
+</div>
+
+<div class="section">
+<h2>9. Why Now</h2>
+
+<ol>
+    <li><strong>Solana Seeker Adoption:</strong> 150,000+ devices sold. Target market exists and is growing.</li>
+    <li><strong>DePIN Trend:</strong> Helium ($1.5B peak market cap), Hivemapper ($150M), Render, others proving DePIN works.</li>
+    <li><strong>Data Privacy Awareness:</strong> Users increasingly want to be paid for their data. Web3 ethos aligns.</li>
+    <li><strong>5G Rollout:</strong> Telcos need coverage data urgently. Billions being spent on 5G infrastructure.</li>
+    <li><strong>Proven Market:</strong> OpenSignal exit ($100M+), Google Maps ($5B/year revenue) validate demand.</li>
+</ol>
+
+</div>
+
+<div class="section">
+<h2>10. The Ask</h2>
+
+<p><strong>We are raising $750,000 at a $5M pre-money valuation.</strong></p>
+
+<p><strong>What you get:</strong></p>
+<ul>
+    <li>15% equity in SONDE Protocol</li>
+    <li>7.5% token allocation (75M $SONDE, 3-year vest, 6-month cliff)</li>
+    <li>Board observer seat (optional)</li>
+</ul>
+
+<p><strong>Potential return:</strong></p>
+<ul>
+    <li>Year 3 target market cap: $30M (5-7x return on equity)</li>
+    <li>Token upside if network scales beyond projections</li>
+    <li>Comparable exits: OpenSignal ($100M), similar DePIN projects ($40M-$1.5B)</li>
+</ul>
+
+<p><strong>Timeline:</strong></p>
+<ul>
+    <li>Week 1-4: Close funding, hire team</li>
+    <li>Week 5-8: Complete development</li>
+    <li>Week 9-12: Alpha testing</li>
+    <li>Week 13-20: Closed beta (100 users)</li>
+    <li>Week 21-24: Production launch</li>
+    <li>Month 7-12: Scale to 10,000 users, sign first enterprise customers</li>
+</ul>
+
+</div>
+
+<div class="highlight">
+<h2>Contact</h2>
+<p><strong>Email:</strong> hello@sonde.network<br>
+<strong>Website:</strong> <a href="https://sonde-orcin.vercel.app">sonde-orcin.vercel.app</a><br>
+<strong>GitHub:</strong> <a href="https://github.com/Bradbuythedip/sonde">github.com/Bradbuythedip/sonde</a><br>
+<strong>Demo:</strong> <a href="https://sonde-orcin.vercel.app">Live PWA</a></p>
+</div>
+
+<div class="footer">
+<p>SONDE Protocol | Spatial Oracle Network for Decentralized Environments</p>
+<p>Built on Solana | Hardware-Attested with TEEPIN | Privacy-First</p>
+<p>February 2026</p>
+</div>
+
+</body>
+</html>
