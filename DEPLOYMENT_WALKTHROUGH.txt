@@ -1,0 +1,847 @@
+╔════════════════════════════════════════════════════════════════╗
+║   SONDE TOKEN DEPLOYMENT WALKTHROUGH - 10 SOL BUDGET          ║
+║   Step-by-Step Guide with Real Commands                       ║
+╚════════════════════════════════════════════════════════════════╝
+
+Budget: 10 SOL (~$1,500)
+Strategy: Hybrid (Airdrop + Liquidity Pool)
+Time Required: 2-3 hours
+Network: Solana MAINNET
+
+═══════════════════════════════════════════════════════════════════
+
+📋 PRE-DEPLOYMENT CHECKLIST
+═══════════════════════════════════════════════════════════════════
+
+Before starting, make sure you have:
+
+[ ] Computer with terminal access
+[ ] Stable internet connection
+[ ] 2-3 hours of uninterrupted time
+[ ] Paper and pen (for seed phrase!)
+[ ] 10 SOL ready to send
+[ ] Access to exchange (Coinbase/Binance) to buy SOL if needed
+
+═══════════════════════════════════════════════════════════════════
+
+PART 1: INSTALL REQUIRED TOOLS
+═══════════════════════════════════════════════════════════════════
+
+Step 1.1: Install Solana CLI
+─────────────────────────────
+
+Open terminal and run:
+
+sh -c "$(curl -sSfL https://release.solana.com/stable/install)"
+
+⏳ Wait for installation (2-3 minutes)
+
+Then add to PATH:
+
+export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
+
+Add to your shell config for persistence:
+
+echo 'export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+
+Verify installation:
+
+solana --version
+
+✅ You should see: solana-cli 1.18.x or higher
+
+
+Step 1.2: Install SPL Token CLI
+────────────────────────────────
+
+Run:
+
+cargo install spl-token-cli
+
+⏳ This takes 5-10 minutes to compile
+
+If you don't have Rust/Cargo installed first:
+
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source $HOME/.cargo/env
+
+Then retry:
+
+cargo install spl-token-cli
+
+Verify:
+
+spl-token --version
+
+✅ You should see: spl-token-cli 3.x or higher
+
+
+═══════════════════════════════════════════════════════════════════
+
+PART 2: GENERATE VANITY WALLET
+═══════════════════════════════════════════════════════════════════
+
+Step 2.1: Generate Vanity Address
+──────────────────────────────────
+
+Choose your pattern:
+
+OPTION A - FAST (30 seconds): "SND" prefix
+OPTION B - PRETTY (30 minutes): "Sond" prefix
+
+For FAST deployment, run:
+
+solana-keygen grind --starts-with SND:1 --ignore-case
+
+⏳ Wait ~30 seconds...
+
+You'll see output like:
+
+Searching for a keypair starting with 'SND'...
+Searched 12345 keypairs. Found 1 match:
+SND7k3nYqZ8xqW5Yp9mK2rJ3hN4vQ8tL1sD6fA9cE2bT5
+
+SAVE THIS SEED PHRASE:
+════════════════════════════════════════════════════════════
+[12-24 WORDS WILL BE DISPLAYED HERE]
+════════════════════════════════════════════════════════════
+
+⚠️  CRITICAL: WRITE THESE WORDS ON PAPER RIGHT NOW!
+⚠️  Take a photo with your phone as backup (delete after writing on paper)
+⚠️  Without these words, you lose everything!
+
+A file will be created: SND*.json
+
+
+Step 2.2: Save the Keypair
+───────────────────────────
+
+Find the generated file:
+
+ls SND*.json
+
+You should see something like: SND7k3nYqZ8xqW5Yp9mK2rJ3hN4vQ8tL1sD6fA9cE2bT5.json
+
+Create secure directory:
+
+mkdir -p ~/sonde-wallet
+
+Move keypair to secure location:
+
+mv SND*.json ~/sonde-wallet/vanity-deployer.json
+
+Verify it exists:
+
+ls -lah ~/sonde-wallet/vanity-deployer.json
+
+✅ You should see: -rw------- ... vanity-deployer.json
+
+
+Step 2.3: Get Your Public Address
+──────────────────────────────────
+
+solana-keygen pubkey ~/sonde-wallet/vanity-deployer.json
+
+✅ Copy this address! You'll need it to receive SOL.
+
+Example output: SND7k3nYqZ8xqW5Yp9mK2rJ3hN4vQ8tL1sD6fA9cE2bT5
+
+Write this down as "DEPLOYER WALLET ADDRESS"
+
+
+═══════════════════════════════════════════════════════════════════
+
+PART 3: CONFIGURE SOLANA CLI
+═══════════════════════════════════════════════════════════════════
+
+Step 3.1: Set Keypair
+─────────────────────
+
+solana config set --keypair ~/sonde-wallet/vanity-deployer.json
+
+✅ Output: Config File: /home/[user]/.config/solana/cli/config.yml
+           RPC URL: https://api.mainnet-beta.solana.com
+           WebSocket URL: wss://api.mainnet-beta.solana.com/ (computed)
+           Keypair Path: /home/[user]/sonde-wallet/vanity-deployer.json
+
+
+Step 3.2: Set Network to MAINNET
+─────────────────────────────────
+
+⚠️  THIS IS REAL MONEY! MAINNET = PRODUCTION
+
+solana config set --url https://api.mainnet-beta.solana.com
+
+✅ Output: Config File: /home/[user]/.config/solana/cli/config.yml
+           RPC URL: https://api.mainnet-beta.solana.com
+
+
+Step 3.3: Verify Configuration
+───────────────────────────────
+
+solana config get
+
+✅ Check that:
+   - RPC URL says "mainnet-beta"
+   - Keypair Path points to your vanity-deployer.json
+
+
+═══════════════════════════════════════════════════════════════════
+
+PART 4: FUND YOUR WALLET
+═══════════════════════════════════════════════════════════════════
+
+Step 4.1: Get Your Wallet Address (Again)
+──────────────────────────────────────────
+
+solana address
+
+Copy this address (should start with SND)
+
+
+Step 4.2: Send SOL from Exchange
+─────────────────────────────────
+
+Option A: From Coinbase
+1. Open Coinbase app/website
+2. Go to "Send & Receive"
+3. Select SOL
+4. Paste your address (SND...)
+5. Enter amount: 10 SOL
+6. Confirm and send
+
+Option B: From Binance
+1. Go to Wallet → Fiat and Spot
+2. Find SOL
+3. Click "Withdraw"
+4. Network: Solana
+5. Address: Paste your SND... address
+6. Amount: 10 SOL
+7. Confirm
+
+Option C: From Another Wallet (Phantom, etc)
+1. Open wallet
+2. Click "Send"
+3. Token: SOL
+4. To: Your SND... address
+5. Amount: 10 SOL
+6. Confirm
+
+⏳ Wait 30-60 seconds for confirmation
+
+
+Step 4.3: Check Balance
+───────────────────────
+
+solana balance
+
+✅ You should see: 10 SOL
+
+If you see 0 SOL:
+- Wait another minute
+- Check transaction on exchange
+- Verify you sent to correct address
+- Run balance command again
+
+
+═══════════════════════════════════════════════════════════════════
+
+PART 5: CREATE TOKEN
+═══════════════════════════════════════════════════════════════════
+
+Step 5.1: Create Token Mint
+────────────────────────────
+
+⚠️  MAINNET DEPLOYMENT - THIS COSTS REAL SOL!
+
+spl-token create-token --decimals 9
+
+⏳ Wait 5-10 seconds...
+
+✅ Output will look like:
+
+Creating token 4Nd7qYqZ8xqW5Yp9mK2rJ3hN4vQ8tL1sD6fA9cE2bT5
+
+Signature: 5Hs7Gk4Ty8Pl9Qw3Er2Td1Cv5Bn8Hj6Fg4Ds3Aq9Zx8...
+
+Address: 4Nd7qYqZ8xqW5Yp9mK2rJ3hN4vQ8tL1sD6fA9cE2bT5
+
+⚠️  SAVE THIS ADDRESS! This is your TOKEN MINT ADDRESS!
+
+Write it down as "TOKEN MINT"
+
+Cost: ~0.01 SOL
+
+
+Step 5.2: Save Token Mint to Variable
+──────────────────────────────────────
+
+Replace with YOUR token mint address:
+
+TOKEN_MINT="4Nd7qYqZ8xqW5Yp9mK2rJ3hN4vQ8tL1sD6fA9cE2bT5"
+
+Also save to file:
+
+echo $TOKEN_MINT > ~/sonde-wallet/token_mint_mainnet.txt
+
+Verify:
+
+echo $TOKEN_MINT
+
+✅ You should see your token mint address
+
+
+Step 5.3: Create Token Account
+───────────────────────────────
+
+spl-token create-account $TOKEN_MINT
+
+✅ Output:
+
+Creating account 7Gh8Kl9Pm2Qn5Rt6Yu1Io8Jh3Gf6Ds5Aq4Wz9Xv0Cb2
+
+Signature: 3Df7Gh8Kl9Pm2Qn5Rt6Yu1Io8Jh3Gf6Ds5Aq4Wz9Xv0...
+
+Cost: ~0.002 SOL
+
+
+Step 5.4: Mint 100 Billion Tokens
+──────────────────────────────────
+
+spl-token mint $TOKEN_MINT 100000000000
+
+⏳ Wait 5-10 seconds...
+
+✅ Output:
+
+Minting 100000000000 tokens
+  Token: 4Nd7qYqZ8xqW5Yp9mK2rJ3hN4vQ8tL1sD6fA9cE2bT5
+  Recipient: 7Gh8Kl9Pm2Qn5Rt6Yu1Io8Jh3Gf6Ds5Aq4Wz9Xv0Cb2
+
+Signature: 2Cd8Fg9Hj1Kl3Mn5Op7Qr9St1Uv3Wx5Yz7Ab9Cd1Ef3...
+
+Cost: ~0.0001 SOL
+
+
+Step 5.5: Verify Token Creation
+────────────────────────────────
+
+Check total supply:
+
+spl-token supply $TOKEN_MINT
+
+✅ Output: 100000000000
+
+Check your balance:
+
+spl-token balance $TOKEN_MINT
+
+✅ Output: 100000000000
+
+Display full token info:
+
+spl-token display $TOKEN_MINT
+
+✅ Output:
+Address: 4Nd7qYqZ8xqW5Yp9mK2rJ3hN4vQ8tL1sD6fA9cE2bT5
+Decimals: 9
+Supply: 100000000000
+Mint authority: SND7k3nYqZ8xqW5Yp9mK2rJ3hN4vQ8tL1sD6fA9cE2bT5
+Freeze authority: (not set)
+
+
+Step 5.6: View on Blockchain Explorer
+──────────────────────────────────────
+
+Open in browser:
+
+echo "https://solscan.io/token/$TOKEN_MINT"
+
+Copy the URL and paste in browser
+
+✅ You should see your token on Solscan!
+
+Alternative explorers:
+- https://explorer.solana.com/address/$TOKEN_MINT
+- https://solana.fm/address/$TOKEN_MINT
+
+
+═══════════════════════════════════════════════════════════════════
+
+🎉 CHECKPOINT: TOKEN DEPLOYED!
+═══════════════════════════════════════════════════════════════════
+
+✅ Token created on mainnet
+✅ 100 billion tokens minted
+✅ Visible on blockchain explorers
+
+Current spending:
+- Token creation: 0.01 SOL
+- Token account: 0.002 SOL
+- Minting: 0.0001 SOL
+- Transaction fees: ~0.01 SOL
+Total spent: ~0.022 SOL
+
+Remaining: ~9.978 SOL
+
+Take a 5-minute break! ☕
+
+
+═══════════════════════════════════════════════════════════════════
+
+PART 6: CREATE LIQUIDITY POOL (OPTION A - SIMPLE)
+═══════════════════════════════════════════════════════════════════
+
+This is the simple approach: Create pool directly with 9.5 SOL
+
+
+Step 6A.1: Go to Raydium
+─────────────────────────
+
+Open browser and go to:
+https://raydium.io/liquidity/create-pool
+
+
+Step 6A.2: Connect Wallet
+──────────────────────────
+
+Click "Connect Wallet" button (top right)
+
+⚠️  You need to import your keypair to Phantom wallet first!
+
+Import to Phantom:
+1. Open Phantom wallet extension
+2. Click settings (gear icon)
+3. Click "Add / Connect Wallet"
+4. Click "Import Private Key"
+5. Paste your private key (see below how to get it)
+
+To get private key:
+
+cat ~/sonde-wallet/vanity-deployer.json
+
+This shows an array of numbers like: [123,45,67,89,...]
+
+Copy the ENTIRE array including brackets
+
+Paste into Phantom
+
+⚠️  OR use Solflare wallet which can import JSON directly:
+1. Install Solflare extension
+2. Click "Import Wallet"
+3. Click "Import from file"
+4. Select ~/sonde-wallet/vanity-deployer.json
+
+
+Step 6A.3: Create Pool on Raydium
+──────────────────────────────────
+
+Once wallet connected:
+
+1. Base Token: Click and paste your TOKEN_MINT address
+2. Quote Token: Select "SOL" from dropdown
+3. Initial Price: You'll set this by the amounts
+
+For 9.5 SOL budget:
+
+4. SOL amount: 4.75
+5. SONDE amount: Calculate based on desired price
+
+Example: For $0.000035 price:
+- 4.75 SOL (~$712)
+- $712 ÷ $0.000035 = 20,342,857 SONDE
+- Enter: 20342857
+
+6. Review pool details
+7. Click "Create Pool"
+8. Approve transaction in wallet
+
+Cost: ~0.3-0.4 SOL
+
+✅ Pool created! Note the pool address.
+
+
+═══════════════════════════════════════════════════════════════════
+
+PART 6: CREATE LIQUIDITY POOL (OPTION B - USDC PAIR) [RECOMMENDED]
+═══════════════════════════════════════════════════════════════════
+
+This approach uses USDC which is cleaner for pricing
+
+
+Step 6B.1: Swap SOL to USDC
+────────────────────────────
+
+Go to Jupiter: https://jup.ag
+
+1. Connect your wallet (Phantom/Solflare with imported key)
+2. From: SOL
+3. To: USDC
+4. Amount: 7 SOL (keep 2.978 SOL for fees/operations)
+5. Click "Swap"
+6. Approve transaction
+
+⏳ Wait 10-15 seconds
+
+✅ You now have ~$1,050 USDC
+
+
+Step 6B.2: Create USDC/SONDE Pool
+──────────────────────────────────
+
+Go to Raydium: https://raydium.io/liquidity/create-pool
+
+1. Connect wallet
+2. Base Token: Paste your TOKEN_MINT
+3. Quote Token: Select "USDC"
+4. USDC amount: 525
+5. SONDE amount: 15000000 (15 million)
+
+This sets price at: $525 ÷ 15M = $0.000035/SONDE
+
+6. Review:
+   - Total liquidity: $1,050
+   - Your LP tokens: 100%
+   - Initial price: $0.000035
+
+7. Click "Create Pool"
+8. Approve (costs ~0.3-0.4 SOL)
+
+✅ Pool created!
+
+
+Step 6B.3: OPTIONAL - Lock Liquidity
+─────────────────────────────────────
+
+To prove you won't rug pull:
+
+Option 1: Time-lock LP tokens
+Go to: https://streamflow.finance
+- Connect wallet
+- Select "Lock Tokens"
+- Token: Your LP token (from pool creation)
+- Amount: 100%
+- Duration: 6-12 months
+- Recipient: Your address (released to you after lock)
+
+Option 2: Burn LP tokens (PERMANENT - can't undo!)
+⚠️  Only do this if you're 100% sure!
+
+Get LP token address from pool, then:
+
+spl-token burn <LP_TOKEN_ADDRESS> <LP_TOKEN_AMOUNT>
+
+
+═══════════════════════════════════════════════════════════════════
+
+PART 7: AIRDROP TO SEEKER HOLDERS (OPTIONAL)
+═══════════════════════════════════════════════════════════════════
+
+With remaining 2 SOL, you can airdrop to ~4,000 Seeker wallets
+
+
+Step 7.1: Create Wallet List
+─────────────────────────────
+
+Create file with Seeker wallet addresses:
+
+nano ~/sonde-wallet/seeker_wallets.txt
+
+Paste wallet addresses (one per line):
+
+Address1
+Address2
+Address3
+...
+
+Save: Ctrl+O, Enter, Ctrl+X
+
+
+Step 7.2: Run Airdrop Script
+─────────────────────────────
+
+Create airdrop script:
+
+cat > ~/sonde-wallet/airdrop.sh << 'AIRDROP'
+#!/bin/bash
+TOKEN_MINT="<YOUR_TOKEN_MINT>"
+AMOUNT=500
+
+while read wallet; do
+  echo "Sending $AMOUNT SONDE to $wallet"
+  spl-token transfer $TOKEN_MINT $AMOUNT $wallet \
+    --fund-recipient \
+    --allow-unfunded-recipient \
+    --fee-payer ~/sonde-wallet/vanity-deployer.json
+  sleep 2
+done < ~/sonde-wallet/seeker_wallets.txt
+AIRDROP
+
+Replace <YOUR_TOKEN_MINT> with your actual mint address
+
+Make executable:
+
+chmod +x ~/sonde-wallet/airdrop.sh
+
+Run it:
+
+bash ~/sonde-wallet/airdrop.sh
+
+⏳ This will take a while (2 seconds per wallet)
+⏳ 4,000 wallets = ~2.2 hours
+
+Cost: ~0.0005 SOL per wallet
+4,000 wallets = ~2 SOL
+
+
+═══════════════════════════════════════════════════════════════════
+
+PART 8: SUBMIT TO LISTING SITES
+═══════════════════════════════════════════════════════════════════
+
+Step 8.1: CoinGecko
+───────────────────
+
+Go to: https://www.coingecko.com/en/coins/new
+
+Fill out form:
+- Token Name: SONDE
+- Token Symbol: SONDE
+- Contract Address: <YOUR_TOKEN_MINT>
+- Website: https://sonde-orcin.vercel.app
+- Twitter: @SondeNetwork (create this first)
+- Telegram: t.me/sondenetwork (create this first)
+- Blockchain: Solana
+- Liquidity: Link to your Raydium pool
+
+Submit and wait 1-2 weeks for review
+
+
+Step 8.2: CoinMarketCap
+───────────────────────
+
+Go to: https://coinmarketcap.com/request/
+
+Same information as CoinGecko
+
+Wait 2-4 weeks for review
+
+
+Step 8.3: Jupiter Aggregator
+─────────────────────────────
+
+Jupiter automatically indexes Raydium pools
+Your token will appear on Jupiter within 24 hours
+No manual submission needed!
+
+
+═══════════════════════════════════════════════════════════════════
+
+PART 9: BACKUP EVERYTHING
+═══════════════════════════════════════════════════════════════════
+
+Step 9.1: Backup Keypair to USB
+────────────────────────────────
+
+Insert USB drive
+
+Find mount point:
+
+df -h | grep media
+
+Copy keypair:
+
+cp ~/sonde-wallet/vanity-deployer.json /media/usb/sonde-backup.json
+
+Verify:
+
+ls -lah /media/usb/sonde-backup.json
+
+Make a SECOND USB backup on different drive!
+
+
+Step 9.2: Encrypt Keypair for Cloud
+────────────────────────────────────
+
+Install GPG if needed:
+
+sudo apt install gnupg
+
+Encrypt keypair:
+
+gpg --symmetric --cipher-algo AES256 ~/sonde-wallet/vanity-deployer.json
+
+Enter a STRONG password (write it down separately!)
+
+This creates: vanity-deployer.json.gpg
+
+Upload this encrypted file to:
+- Dropbox
+- Google Drive  
+- iCloud
+etc
+
+⚠️  ONLY upload the .gpg (encrypted) version, never the plain .json!
+
+
+Step 9.3: Create Deployment Summary
+────────────────────────────────────
+
+cat > ~/sonde-wallet/DEPLOYMENT_RECORD.txt << RECORD
+SONDE TOKEN MAINNET DEPLOYMENT
+===============================
+
+Date: $(date)
+
+DEPLOYER WALLET:
+Address: $(solana address)
+Keypair: ~/sonde-wallet/vanity-deployer.json
+
+TOKEN:
+Mint: $TOKEN_MINT
+Name: SONDE
+Symbol: \$SONDE
+Decimals: 9
+Supply: 100,000,000,000
+
+LIQUIDITY POOL:
+Raydium Pool: [paste pool address]
+Pair: SONDE/USDC (or SONDE/SOL)
+Initial Liquidity: [amount]
+Initial Price: [price]
+
+EXPLORERS:
+Solscan: https://solscan.io/token/$TOKEN_MINT
+Solana Explorer: https://explorer.solana.com/address/$TOKEN_MINT
+
+BACKUPS:
+[ ] Seed phrase written on paper (3 locations)
+[ ] Keypair backed up to USB drive #1
+[ ] Keypair backed up to USB drive #2
+[ ] Encrypted keypair in cloud storage
+[ ] Deployment record saved
+
+NEXT STEPS:
+[ ] Create Twitter @SondeNetwork
+[ ] Create Telegram t.me/sondenetwork
+[ ] Submit to CoinGecko
+[ ] Submit to CoinMarketCap
+[ ] Marketing push
+[ ] Complete mobile app
+
+RECORD
+
+Print this:
+
+cat ~/sonde-wallet/DEPLOYMENT_RECORD.txt
+
+
+═══════════════════════════════════════════════════════════════════
+
+🎉 DEPLOYMENT COMPLETE!
+═══════════════════════════════════════════════════════════════════
+
+✅ Vanity wallet created (SND... or Sond...)
+✅ Token deployed on mainnet
+✅ 100 billion SONDE minted
+✅ Liquidity pool created
+✅ Trading live on Raydium
+✅ Visible on Jupiter
+✅ Airdropped to Seeker holders (if you did this)
+✅ Backups completed
+
+YOUR TOKEN IS LIVE! 🚀
+
+
+═══════════════════════════════════════════════════════════════════
+
+FINAL CHECKLIST
+═══════════════════════════════════════════════════════════════════
+
+[ ] Seed phrase written on paper (in 3 safe places)
+[ ] Keypair backed up to 2 USB drives
+[ ] Encrypted backup in cloud
+[ ] Token visible on Solscan
+[ ] Pool visible on Raydium
+[ ] LP tokens locked or burned (if desired)
+[ ] Submitted to CoinGecko
+[ ] Submitted to CoinMarketCap
+[ ] Twitter account created
+[ ] Telegram group created
+[ ] Marketing post in r/SolanaToken
+[ ] Marketing post in Solana Mobile Discord
+[ ] Announced in your communities
+
+
+═══════════════════════════════════════════════════════════════════
+
+WHAT'S NEXT?
+═══════════════════════════════════════════════════════════════════
+
+Week 1:
+- Monitor liquidity pool
+- Respond to community questions
+- Share on social media
+- Get first buyers
+
+Week 2-4:
+- Wait for CoinGecko/CMC approval
+- Continue marketing
+- Build community
+- Share updates
+
+Week 5-8:
+- Finish mobile app development
+- Beta test with community
+- Prepare app launch
+
+Week 9+:
+- Launch mobile app
+- Activate reward emissions
+- Users start earning
+- Reach out to enterprise customers
+
+
+═══════════════════════════════════════════════════════════════════
+
+SUPPORT & RESOURCES
+═══════════════════════════════════════════════════════════════════
+
+If you run into issues:
+
+Solana Discord: https://discord.gg/solana
+Raydium Discord: https://discord.gg/raydium
+Stack Exchange: https://solana.stackexchange.com
+
+Documentation:
+Solana: https://docs.solana.com
+SPL Token: https://spl.solana.com/token
+Raydium: https://docs.raydium.io
+
+
+═══════════════════════════════════════════════════════════════════
+
+YOUR TOKEN INFO (Fill this out as you go)
+═══════════════════════════════════════════════════════════════════
+
+Deployer Wallet: SND_______________________________________
+
+Token Mint: _______________________________________________
+
+Pool Address: ______________________________________________
+
+Initial Price: $____________ per SONDE
+
+Total Liquidity: $__________
+
+Solscan Link: https://solscan.io/token/___________________
+
+Twitter: @SondeNetwork
+
+Telegram: t.me/sondenetwork
+
+
+════════════════════════════════════════════════════════════════════
+                    GOOD LUCK! 🚀
+════════════════════════════════════════════════════════════════════
